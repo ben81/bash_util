@@ -31,7 +31,7 @@ function addPath() {
     then
       echo "addPath <folder>"
     else
-      export PATH=$1:${PATH}
+      export PATH="$1:${PATH}"
     fi
   fi
 }
@@ -69,6 +69,9 @@ function removePath() {
 #
 function cleanPath() {
   NEWPATH=":"
+  local OLD_IFS=$IFS
+  IFS='
+'
   for d in $(path)
   do
     if [[ -d "$d" ]]
@@ -82,6 +85,7 @@ function cleanPath() {
       echo "Folder Not exist $d"
     fi
   done
+  IFS=${OLD_IFS}
   export PATH=$(echo ${NEWPATH} | sed "s/^://" | sed "s/:$//" )
   echo $PATH
 }
