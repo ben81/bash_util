@@ -1,0 +1,47 @@
+
+# script Bash
+
+## install/installDocker.sh
+
+This script install docker in debian for current user
+
+## install/installPandoc.sh
+
+This script install pandoc 
+
+## pathUtil.sh
+This script configue a path tool.
+you need source this script in basj
+Syntax: *source pathUtil.sh*'
+
+1. path
+
+Syntax: *path*
+
+this function list a folder in PATH variable
+
+2. addPath
+
+Syntax: *addPath \<folder\>*.
+
+This function add a given \<folder\> into the PATH in first folder.
+ 
+NB: completion is configured to add directory
+ 
+3. removePath
+
+Syntax: *removePath \<folder\>* .
+
+This function remove a given \<folder\> into the PATH.
+
+NB: completion is configured to propose directory present into a PATH variable
+
+4. cleanPath
+
+Syntax: *cleanPath*.
+
+This function cleanning a a PATH variable.
+
+   1. remove unexisting folder.
+   2. remove duplicate foler.
+
