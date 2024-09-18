@@ -11,7 +11,7 @@ This script install pandoc
 
 ## pathUtil.sh
 This script configue a path tool.
-you need source this script in basj
+you need source this script in bash
 Syntax: *source pathUtil.sh*'
 
 1. path
@@ -44,4 +44,24 @@ This function cleanning a a PATH variable.
 
    1. remove unexisting folder.
    2. remove duplicate foler.
+
+## generateDoc.sh
+
+This script generate a PDF from README.MD
+
+## completion.sh
+
+Configure completion
+you need source this script in bash
+Syntax: *source completion.sh*'
+
+
+- Completion for NPM
+
+
+## git_util.sh
+
+Script for git
+you need source this script in bash
+Syntax: *source gitUtil.sh*'
 
