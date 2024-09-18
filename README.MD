@@ -65,3 +65,35 @@ Script for git
 you need source this script in bash
 Syntax: *source gitUtil.sh*'
 
+
+1. insideGit
+
+	syntax *insideGit*
+
+2. gitRoot
+
+	syntax *gitRoot*
+
+3. cdGitRoot
+
+	syntax *cdGitRoot*
+
+4. pwdGit
+
+	syntax *pwdGit*
+
+5. repoGit
+
+	syntax *repoGit*
+
+6. lsIgnore
+
+	syntax *lsIgnore*
+
+7. findIgnore
+
+	syntax *findIgnore*
+
+
+
+
