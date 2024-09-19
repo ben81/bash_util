@@ -75,3 +75,8 @@ function findIgnore() {
 
 
 
+function needCommit() {
+    #insideGit
+    #   if [[ $? -eq 0 ]]
+    git status --porcelain | grep '.' >/dev/null
+}

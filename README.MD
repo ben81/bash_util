@@ -68,32 +68,34 @@ Syntax: *source gitUtil.sh*'
 
 1. insideGit
 
-	syntax *insideGit*
+Syntax: *insideGit*
 
 2. gitRoot
 
-	syntax *gitRoot*
+Syntax: *gitRoot*
 
 3. cdGitRoot
 
-	syntax *cdGitRoot*
+Syntax: *cdGitRoot*
 
 4. pwdGit
 
-	syntax *pwdGit*
+Syntax: *pwdGit*
 
 5. repoGit
 
-	syntax *repoGit*
+Ssyntax: *repoGit*
 
 6. lsIgnore
 
-	syntax *lsIgnore*
+Syntax: *lsIgnore*
 
 7. findIgnore
 
-	syntax *findIgnore*
+Syntax: *findIgnore*
 
+8. needCommit
 
+Syntax: *needCommit*
 
 
