@@ -58,7 +58,6 @@ function lsIgnore() {
         echo 'Not a git repo'
     fi
 
-
 }
 
 function findIgnore() {
@@ -79,4 +78,15 @@ function needCommit() {
     #insideGit
     #   if [[ $? -eq 0 ]]
     git status --porcelain | grep '.' >/dev/null
+}
+
+function intiAliasCdGitRepo() {
+    for d  in $( repoGit )
+    do
+        folder=$(dirname $d)
+        name=$(basename $folder)
+        echo alias cd${name}="cd $folder"
+        alias cd${name}="cd $folder"
+    done
+
 }
