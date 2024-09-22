@@ -80,12 +80,12 @@ function needCommit() {
     git status --porcelain | grep '.' >/dev/null
 }
 
-function intiAliasCdGitRepo() {
+function initAliasCdGitRepo() {
     for d  in $( repoGit )
     do
         folder=$(dirname $d)
         name=$(basename $folder)
-        echo alias cd${name}="cd $folder"
+        echo "alias cd${name}=i\"cd $folder\""
         alias cd${name}="cd $folder"
     done
 
