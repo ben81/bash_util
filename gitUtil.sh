@@ -85,7 +85,7 @@ function initAliasCdGitRepo() {
     do
         folder=$(dirname $d)
         name=$(basename $folder)
-        echo "alias cd${name}=i\"cd $folder\""
+        echo "alias cd${name}=\"cd $folder\""
         alias cd${name}="cd $folder"
     done
 
