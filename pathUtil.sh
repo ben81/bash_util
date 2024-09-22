@@ -12,53 +12,53 @@
 
 
 #
-# this function lsit a folder in PATH variable
+# this function list a folder in PATH variable
 #
 function path() {
-  echo $PATH | tr ':' '\n' | grep -v "^$"
-
+    echo $PATH | tr ':' '\n' | grep -v "^$"
 }
 
 #
 # this function add an given folder in PATH variable
 #
 function addPath() {
-  if  [[ -z "$1" ]]
-  then
-    echo "addPath <folder>"
-  else
-    if [[ ! -d "$1" ]]
+    if  [[ -z "$1" ]]
     then
-      echo "addPath <folder>"
+        echo "addPath <folder>"
     else
-      export PATH="$1:${PATH}"
+        if [[ ! -d "$1" ]]
+        then
+            echo "addPath <folder>"
+        else
+            export PATH="$1:${PATH}"
+        fi
     fi
-  fi
 }
 
 #
 # this function remove an given folder in PATH variable
 #
 function removePath() {
-  if  [[ -z "$1" ]]
-  then
-    echo "removePath <folder>"
-  else
-    if [[ ! -d "$1" ]]
+    if  [[ -z "$1" ]]
     then
-      echo "removePath <folder>"
+        echo "removePath <folder>"
     else
-      path | grep  "^$1$" >> /dev/null
-      if [[ $? -eq 0 ]]
-      then
-        NEW=$( path | grep -v "^$1$" | tr '\n' ':' | sed "s/:$//" )
-        echo $NEW
-        export PATH=$NEW
-      else
-        echo "folder $1 not in path "
-      fi
+        if [[ ! -d "$1" ]]
+        then
+            echo "removePath <folder>"
+        else
+            path | grep  "^$1$" >> /dev/null
+            if [[ $? -eq 0 ]]
+            then
+                NEW=$( path | grep -v "^$1$" | tr '\n' ':' | sed "s/:$//" )
+                echo $NEW
+                export PATH=$NEW
+            else
+                echo "folder $1 not in path "
+            fi
+        fi
     fi
-  fi
+
 }
 
 
@@ -68,26 +68,25 @@ function removePath() {
 # remove duplicate folder into PATH
 #
 function cleanPath() {
-  NEWPATH=":"
-  local OLD_IFS=$IFS
-  IFS='
-'
-  for d in $(path)
-  do
-    if [[ -d "$d" ]]
-    then
-      echo $NEWPATH | grep ":$d:" >> /dev/null
-      if [[ $? -eq 1 ]]
-      then
-        NEWPATH=$(echo "${NEWPATH}${d}:")
-      fi
-    else
-      echo "Folder Not exist $d"
-    fi
-  done
-  IFS=${OLD_IFS}
-  export PATH=$(echo ${NEWPATH} | sed "s/^://" | sed "s/:$//" )
-  echo $PATH
+    NEWPATH=":"
+    local OLD_IFS=$IFS
+    IFS=$(echo -en "\n\b")
+    for d in $(path)
+    do
+        if [[ -d "$d" ]]
+        then
+            echo $NEWPATH | grep ":$d:" >> /dev/null
+            if [[ $? -eq 1 ]]
+            then
+                NEWPATH=$(echo "${NEWPATH}${d}:")
+            fi
+        else
+            echo "Folder Not exist $d"
+        fi
+    done
+    IFS=${OLD_IFS}
+    export PATH=$(echo ${NEWPATH} | sed "s/^://" | sed "s/:$//" )
+    echo $PATH
 }
 
 
@@ -96,6 +95,7 @@ complete -A directory addPath
 
 # add completion pour removePath
 function _removePathCompletion() {
-  COMPREPLY=($(compgen -W "$(echo $PATH | sed 's/:/ /g')" "${COMP_WORDS[1]}"))
+    COMPREPLY=($(compgen -W "$(echo $PATH | sed 's/:/ /g')" "${COMP_WORDS[1]}"))
 }
+
 complete -F _removePathCompletion removePath
