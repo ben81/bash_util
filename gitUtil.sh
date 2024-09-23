@@ -24,7 +24,6 @@ function cdGitRoot() {
     else
         echo 'Not a git repo'
     fi
-
 }
 
 function pwdGit() {
@@ -44,7 +43,6 @@ function repoGit() {
         git rev-parse --absolute-git-dir
     else
         find $PWD -name '.git'  2>/dev/null
-
     fi
 }
 
@@ -57,7 +55,6 @@ function lsIgnore() {
     else
         echo 'Not a git repo'
     fi
-
 }
 
 function findIgnore() {
@@ -68,8 +65,6 @@ function findIgnore() {
     else
         echo 'Not a git repo'
     fi
-
-
 }
 
 
