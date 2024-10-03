@@ -46,6 +46,10 @@ function repoGit() {
     fi
 }
 
+function repoWorkTree(){
+	repoGit | sed 's@/.git$@@'
+}
+
 
 function lsIgnore() {
     insideGit
