@@ -55,7 +55,7 @@ function lsIgnore() {
     insideGit
     if [[ $? -eq 0 ]]
     then
-        find  -maxdepth 1 -exec git check-ignore {} ';'
+        find  -maxdepth 1 -exec git check-ignore {} -v ';'
     else
         echo 'Not a git repo'
     fi
@@ -65,7 +65,7 @@ function findIgnore() {
     insideGit
     if [[ $? -eq 0 ]]
     then
-        find  -exec git check-ignore {} ';'
+        find  -exec git check-ignore {} -v ';'
     else
         echo 'Not a git repo'
     fi
