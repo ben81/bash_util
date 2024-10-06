@@ -46,8 +46,8 @@ function repoGit() {
     fi
 }
 
-function repoWorkTree(){
-	repoGit | sed 's@/.git$@@'
+function repoWorkTree() {
+    repoGit | sed 's@/.git$@@'
 }
 
 
@@ -88,7 +88,7 @@ function initAliasCdGitRepo() {
         alias cd${name}="cd $folder"
         alias cd${name}
         # create alias from pom.xml project
-        for pom in $(git --git-dir=$d ls-files -- '**/pom.xml')
+        for pom in $(git --git-dir=$d ls-files -- '**/pom.xml' 'pom.xml')
         do
             #  echo ${folder}/${pom}
             pomfolder=$(dirname  ${folder}/${pom})
@@ -101,13 +101,23 @@ function initAliasCdGitRepo() {
             fi
         done
         # create alas from package.json project
-        for json in $(git --git-dir=$d ls-files -- '**/package.json')
+        for json in $(git --git-dir=$d ls-files -- '**/package.json' 'package.json')
         do
             # echo ${folder}/${json}
             jsonfolder=$(dirname  ${folder}/${json})
             jsonName=$( jq -r .name ${folder}/${json})
             alias cd${jsonName}="cd $jsonfolder"
             alias cd${jsonName}
+        done
+        # echo eclipse .project  
+  		for prj in $(git --git-dir=$d ls-files -- '**/.project' '.project')
+        do
+           # echo ${folder}/${prj}
+            prjfolder=$(dirname  ${folder}/${prj})
+            prjName=$( echo "cat /projectDescription/name/text()" | xmllint --shell ${folder}/${prj} | sed '/^\/ >/d')
+            #echo "project $prjName"
+            alias cd${prjName}="cd $prjfolder"
+            alias cd${prjName}
         done
     done
     echo "return to $OLD"

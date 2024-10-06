@@ -1,18 +1,31 @@
 
 # script Bash
 
-## install/installDocker.sh
+## install
+
+this folder define a script for install tool.
+
+### install/installDocker.sh
 
 This script install docker in debian for current user
 
-## install/installPandoc.sh
+### install/installPandoc.sh
 
 This script install pandoc 
+
+## source.sh
+
+Syntax: *source source.sh*
+this script source a followd script:
+
+- pathUtil.sh
+- gitUtil.sh
+- completion.sh
 
 ## pathUtil.sh
 This script configue a path tool.
 you need source this script in bash
-Syntax: *source pathUtil.sh*'
+Syntax: *source pathUtil.sh*
 
 1. path
 
