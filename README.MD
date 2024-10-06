@@ -57,6 +57,7 @@ Syntax: *source completion.sh*'
 
 
 - Completion for NPM
+- Completion for pandoc
 
 
 ## git_util.sh
@@ -70,32 +71,68 @@ Syntax: *source gitUtil.sh*'
 
 Syntax: *insideGit*
 
+return a return  code ( $? ) 0 if a current directory is a in git working tree , otherwise 0
+
 2. gitRoot
 
 Syntax: *gitRoot*
+
+Display a absolute path to a root of current git working tree
 
 3. cdGitRoot
 
 Syntax: *cdGitRoot*
 
+Change directory to a root of current git working tree
+
 4. pwdGit
 
 Syntax: *pwdGit*
 
+Display a relative path in git directory
+
 5. repoGit
 
-Ssyntax: *repoGit*
+Syntax: *repoGit*
 
-6. lsIgnore
+Find a git repository in currren sub folder
+
+6. repoWorkTree
+
+Syntax: *repoWorkTree*
+
+Find a git working tree  in currrent sub folder
+
+7. lsIgnore
 
 Syntax: *lsIgnore*
 
-7. findIgnore
+List a file in git ignore in current directory
+
+8. findIgnore
 
 Syntax: *findIgnore*
 
-8. needCommit
+List a file in git ignore in current directory and sub directory
+
+9. needCommit
 
 Syntax: *needCommit*
+
+return a return  code ( $? ) 0 if a current directory is a in git working tree and have file to commit , otherwise 0
+
+10. initAliasCdGitRepo
+
+Syntax: *initAliasCdGitRepo*
+
+Find a git working tree  in currrent sub folder  and find a maven or node project.
+
+Create an alias for each
+
+ - git working tree  found
+ - maven project into repository found
+ - node project into repository found
+
+
 
 
