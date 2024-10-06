@@ -11,5 +11,6 @@
 
 
 
-sudo apt install -y libxml2-utils
-sudo apt install -y jq
+sudo apt-get install -y libxml2-utils
+sudo apt-get install -y jq
+sudo apt-get install -y maven

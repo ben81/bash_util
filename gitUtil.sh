@@ -100,7 +100,7 @@ function initAliasCdGitRepo() {
                 alias cd${artifact}
             fi
         done
-        # create alas from package.json project
+        # create alias from package.json project
         for json in $(git --git-dir=$d ls-files -- '**/package.json' 'package.json')
         do
             # echo ${folder}/${json}
@@ -109,10 +109,10 @@ function initAliasCdGitRepo() {
             alias cd${jsonName}="cd $jsonfolder"
             alias cd${jsonName}
         done
-        # echo eclipse .project  
-  		for prj in $(git --git-dir=$d ls-files -- '**/.project' '.project')
+        # echo eclipse .project
+        for prj in $(git --git-dir=$d ls-files -- '**/.project' '.project')
         do
-           # echo ${folder}/${prj}
+            # echo ${folder}/${prj}
             prjfolder=$(dirname  ${folder}/${prj})
             prjName=$( echo "cat /projectDescription/name/text()" | xmllint --shell ${folder}/${prj} | sed '/^\/ >/d')
             #echo "project $prjName"

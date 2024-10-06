@@ -73,6 +73,10 @@ function cleanPath() {
     IFS=$(echo -en "\n\b")
     for d in $(path)
     do
+        if [[ "$1" == "-r" ]]
+        then
+            d=$(realpath $d)
+        fi
         if [[ -d "$d" ]]
         then
             echo $NEWPATH | grep ":$d:" >> /dev/null
@@ -89,9 +93,11 @@ function cleanPath() {
     echo $PATH
 }
 
+complete -W "-r" cleanPath
 
 # add completion pour addPath
 complete -A directory addPath
+
 
 # add completion pour removePath
 function _removePathCompletion() {
