@@ -7,4 +7,5 @@ echo ${SCRIPT_DIR}
 source ${SCRIPT_DIR}/pathUtil.sh
 source ${SCRIPT_DIR}/gitUtil.sh
 source ${SCRIPT_DIR}/completion.sh
+source ${SCRIPT_DIR}/cdrom.sh
 

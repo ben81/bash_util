@@ -31,8 +31,8 @@ function pwdGit() {
     if [[ $? -eq 0 ]]
     then
         realpath -s --relative-to=$( git rev-parse --show-toplevel) $PWD/
-    else
-        echo 'Not a git repo'
+        #    else
+        #        echo 'Not a git repo'
     fi
 }
 
@@ -71,12 +71,26 @@ function findIgnore() {
     fi
 }
 
+#
+# use a return code for detect
+#
+function hasneedCommit() {
+    insideGit
+    if [[ $? -eq 0 ]]
+    then
+        git status --porcelain | grep '.' >/dev/null
+    else
+        echo "A" | grep B >/dev/null
+    fi
+}
 
 
 function needCommit() {
-    #insideGit
-    #   if [[ $? -eq 0 ]]
-    git status --porcelain | grep '.' >/dev/null
+    hasneedCommit
+    if [[ $? -eq 0 ]]
+    then
+        echo "*"
+    fi
 }
 
 function initAliasCdGitRepo() {
