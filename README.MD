@@ -11,7 +11,7 @@ This script install docker in debian for current user
 
 ### install/installPandoc.sh
 
-This script install pandoc 
+This script install pandoc
 
 ## source.sh ###
 
@@ -38,9 +38,9 @@ this function list a folder in PATH variable
 Syntax: *addPath \<folder\>*.
 
 This function add a given \<folder\> into the PATH in first folder.
- 
+
 NB: completion is configured to add directory
- 
+
 3. removePath
 
 Syntax: *removePath \<folder\>* .
@@ -84,7 +84,7 @@ Syntax: *source gitUtil.sh*'
 
 Syntax: *insideGit*
 
-return a return  code ( $? ) 0 if a current directory is a in git working tree , otherwise 0
+return a return  code ( $? ) 0 if a current directory is a in git working tree , otherwise 1
 
 2. gitRoot
 
