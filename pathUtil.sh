@@ -26,11 +26,13 @@ function addPath() {
     then
         echo "addPath <folder>"
     else
-        if [[ ! -d "$1" ]]
+    	FOLDER=$(readlink -m  "$1")
+        if [[ ! -d "${FOLDER}" ]]
         then
-            echo "addPath <folder>"
+            echo "addPath <folder> "
+            echo "folder not exist $FOLDER"
         else
-            export PATH="$1:${PATH}"
+            export PATH="${FOLDER}:${PATH}"
         fi
     fi
 }
@@ -105,3 +107,4 @@ function _removePathCompletion() {
 }
 
 complete -F _removePathCompletion removePath
+

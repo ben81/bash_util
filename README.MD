@@ -13,6 +13,18 @@ This script install docker in debian for current user
 
 This script install pandoc
 
+### install/installPythonTool.sh
+
+This script install python tools
+- beauty
+
+### install/installTool.sh
+
+This script install tools
+- libxml2-utils
+- jq
+- maven
+
 ## source.sh ###
 
 Syntax: *source source.sh*
