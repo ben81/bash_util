@@ -26,7 +26,7 @@ function addPath() {
     then
         echo "addPath <folder>"
     else
-    	FOLDER=$(readlink -m  "$1")
+        FOLDER=$(readlink -m  "$1")
         if [[ ! -d "${FOLDER}" ]]
         then
             echo "addPath <folder> "
