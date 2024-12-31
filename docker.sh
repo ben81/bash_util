@@ -12,3 +12,9 @@ function dockerMount(){
   _internal_dockerMount| column -t  -s '|' -o '|'
 }
 
+
+function dockerPS(){
+	docker ps -a  --no-trunc --format  'table  {{.ID}}|{{.Image}}|{{.Names}}|{{.Networks}}|{{.Ports}}|{{.Label "com.docker.compose.project.config_files"}}'| column -t  -s '|' -o '|'
+}
+
+
