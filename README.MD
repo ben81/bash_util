@@ -33,6 +33,8 @@ this script source a followd script:
 - pathUtil.sh
 - gitUtil.sh
 - completion.sh
+- cdrom.sh
+- docker.sh
 
 ## pathUtil.sh
 This script configue a path tool.
@@ -144,7 +146,7 @@ List a file in git ignore in current directory and sub directory
 
 Syntax: *needCommit*
 
-return a return  code ( $? ) 0 if a current directory is a in git working tree and have file to commit , otherwise 0
+Return a return  code ( $? ) 0 if a current directory is a in git working tree and have file to commit , otherwise 0
 
 10. initAliasCdGitRepo
 
@@ -160,4 +162,40 @@ Create an alias for each
 
 
 
+## cdrom.sh
 
+Script for cd rom 
+
+you need source this script in bash
+Syntax: *source cdrom.sh*'
+
+1. findCdrom
+
+Syntax: *findCdrom*
+
+Find a cdrom folder 
+
+2. cdfindCdrom
+
+Syntax: *cdfindCdrom*
+
+change directory to cdrom folder 
+
+## docker.sh
+
+Script for docker
+you need source this script in bash
+Syntax: *source docker.sh*'
+
+
+1. dockerMount
+  
+Syntax: *dockerMount*
+
+Lst all docker mount 
+
+2. dockerPs
+
+Syntax: *dockerPs*
+
+List all docker process

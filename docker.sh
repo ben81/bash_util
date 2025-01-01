@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 function _internal_dockerMount(){
 
@@ -13,7 +13,7 @@ function dockerMount(){
 }
 
 
-function dockerPS(){
+function dockerPs(){
 	docker ps -a  --no-trunc --format  'table  {{.ID}}|{{.Image}}|{{.Names}}|{{.Networks}}|{{.Ports}}|{{.Label "com.docker.compose.project.config_files"}}'| column -t  -s '|' -o '|'
 }
 

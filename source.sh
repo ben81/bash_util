@@ -8,4 +8,5 @@ source ${SCRIPT_DIR}/pathUtil.sh
 source ${SCRIPT_DIR}/gitUtil.sh
 source ${SCRIPT_DIR}/completion.sh
 source ${SCRIPT_DIR}/cdrom.sh
+source ${SCRIPT_DIR}/docker.sh
 
