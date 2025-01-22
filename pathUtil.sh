@@ -49,10 +49,11 @@ function removePath() {
         then
             echo "removePath <folder>"
         else
-            path | grep  "^$1$" >> /dev/null
+	    FOLDER=$(readlink -m  "$1")
+            path | grep  "^$FOLDER$" >> /dev/null
             if [[ $? -eq 0 ]]
             then
-                NEW=$( path | grep -v "^$1$" | tr '\n' ':' | sed "s/:$//" )
+                NEW=$( path | grep -v "^$FOLDER$" | tr '\n' ':' | sed "s/:$//" )
                 echo $NEW
                 export PATH=$NEW
             else
