@@ -49,7 +49,7 @@ function removePath() {
         then
             echo "removePath <folder>"
         else
-	    FOLDER=$(readlink -m  "$1")
+            FOLDER=$(readlink -m  "$1")
             path | grep  "^$FOLDER$" >> /dev/null
             if [[ $? -eq 0 ]]
             then

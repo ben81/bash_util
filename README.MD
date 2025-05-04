@@ -35,6 +35,7 @@ this script source a followd script:
 - completion.sh
 - cdrom.sh
 - docker.sh
+- maven.sh
 
 ## pathUtil.sh
 This script configue a path tool.
@@ -199,3 +200,35 @@ Lst all docker mount
 Syntax: *dockerPs*
 
 List all docker process
+
+
+## maven.sh
+
+Script for maven
+you need source this script in bash
+Syntax: *source maven.sh*'
+
+
+
+1. mvnCleanPackage
+
+Syntax: *mvnCleanPackage*
+Execute command: mvn clean package
+
+2. mvnTree
+
+Syntax: *mvnTree*
+Execute command: mvn dependency:tree
+
+3. mvnCheckVersion
+
+Syntax: *mvnCheckVersion*
+Execute command: mvn versions:display-dependency-updates
+
+4. mvnUpdateVersion
+
+Syntax: *mvnUpdateVersion*
+Execute command: mvn versions:use-latest-versions
+    
+
+
