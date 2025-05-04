@@ -137,3 +137,12 @@ function initAliasCdGitRepo() {
     echo "return to $OLD"
     cd "$OLD"
 }
+
+
+function currentBranchGit() {
+    insideGit
+    if [[ $? -eq 0 ]]
+    then
+        echo "[$(git branch --show-current)]"
+    fi
+}
