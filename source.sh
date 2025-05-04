@@ -10,5 +10,6 @@ source ${SCRIPT_DIR}/completion.sh
 source ${SCRIPT_DIR}/cdrom.sh
 source ${SCRIPT_DIR}/docker.sh
 source ${SCRIPT_DIR}/maven.sh
+source ${SCRIPT_DIR}/npmUtil.sh
 source ${SCRIPT_DIR}/prompt.sh
 

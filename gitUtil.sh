@@ -138,6 +138,30 @@ function initAliasCdGitRepo() {
     cd "$OLD"
 }
 
+function commitIstagged() {
+    git describe --tags --exact-match $(git rev-parse HEAD)  >/dev/null 2>&1
+}
+
+function currentTag() {
+    insideGit
+    if [[ $? -eq 0 ]]
+    then
+        commitIstagged
+        if [[ $? -eq 0 ]]
+        then
+            git tag --contains HEAD --column
+        fi
+    fi
+
+}
+
+function tracking_info(){ 
+	current_branch=$(git rev-parse --abbrev-ref HEAD)
+	git for-each-ref --format='%(upstream:track)' refs/heads/"$current_branch"
+}
+
+
+
 
 function currentBranchGit() {
     insideGit
