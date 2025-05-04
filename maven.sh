@@ -1,5 +1,10 @@
 #!/bin/bash
 
+function isMavenProject() {
+	test -f pom.xml
+}
+
+
 
 function mvnCleanPackage() {
     mvn clean package
@@ -18,6 +23,9 @@ function mvnUpdateVersion() {
 }
 
 function mvnArtefactVersion(){
+	isMavenProject
+	if [[ $? -eq 0 ]]
+	then
 	# Extraire la version du projet courant
 	version=$(xmllint --xpath "/*[local-name()='project']/*[local-name()='version']/text()" pom.xml)
 
@@ -26,4 +34,5 @@ function mvnArtefactVersion(){
 
 	# Afficher les résultats
 	echo "${artifactId}@${version}"
+	fi
 }
