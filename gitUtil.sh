@@ -155,9 +155,9 @@ function currentTag() {
 
 }
 
-function tracking_info(){ 
-	current_branch=$(git rev-parse --abbrev-ref HEAD)
-	git for-each-ref --format='%(upstream:track)' refs/heads/"$current_branch"
+function tracking_info() {
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    git for-each-ref --format='%(upstream:track)' refs/heads/"$current_branch"
 }
 
 
