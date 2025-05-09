@@ -11,16 +11,36 @@
 
 
 
+SEGMENT_RIGHT_SEPARATOR=$'\uE0B0'
+SEGMENT_LEFT_SEPARATOR=$'\uE0B2'
 
-#PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null); PS1_CMD2=$(cmd1)';
-#PS1='\[\e[38;5;171m\]\u\[\e[0m\] @\[\e[40m\]\h\[\e[0m\]:\[\e[38;5;83m\]\w\[\e[0m\] \[\e[30;101m\]${PS1_CMD1}\[\e[91;106m\]\[\e[30m\]${PS1_CMD2}\[\e[96;40m\]\[\e[0m\]\\$ '
+#PS1='\[\e[38;5;171m\]\u@\h\[\e[0m\]:\[\e[38;5;83m\]\W ${PS1_CMD1}\[\e[91;106m\]\[\e[30m\]${PS1_CMD2}\[\e[96;40m\]\[\e[0m\] \\$ '
 
-function __displayVersion() {
-    echo "$(mvnArtefactVersion) $(npmNameVersion)"
+#PS1='$(tput setaf 5 setb 7 )\u@\h$(tput setaf 1 setab 7):$(tput setaf 5 setab 7)\W\[\e[0m\] \[\e[30;101m\]${PS1_CMD1}\[\e[91;106m\]\[\e[30m\]${PS1_CMD2}\[\e[96;40m\]\[\e[0m\] \\$ '
+
+make_prompt() {
+  local VIOLET="\[\e[38;5;171m\]"
+  local CYAN="\[\e[36m\]"
+  local GREEN="\[\e[38;5;83m\]"
+  local RESET="\[\e[0m\]"
+  local left=$'\uE0B2' 
+  local right=$'\uE0B0'
+
+  var="${VIOLET}\u@\h "
+  var="$var${GREEN}\w "
+  if insideGit
+  then
+  	 var="$var \[\e[30;101m\]${right} $(currentBranchGit)$(tracking_info)$(needCommit) \[\e[0;91m\]${right}"    
+  fi
+  if [[ -f pom.xml ||  -f package.json ]]
+  then
+    var="$var\[\e[30;106m\]${right} $(mvnArtefactVersion)$(npmNameVersion) \[\e[96;40m\]${right}"  
+  fi
+  var="$var${RESET} \\$"
+  
+  echo "$var "
 }
 
+PS1="$(make_prompt)"
 
 
-PROMPT_COMMAND='PS1_CMD1=$(currentBranchGit)$(tracking_info)$(needCommit); PS1_CMD2=$(__displayVersion)';
-
-PS1='\[\e[38;5;171m\]\u@\h\[\e[0m\]:\[\e[38;5;83m\]\W\[\e[0m\] \[\e[30;101m\]${PS1_CMD1}\[\e[91;106m\]\[\e[30m\]${PS1_CMD2}\[\e[96;40m\]\[\e[0m\]\\$ '
