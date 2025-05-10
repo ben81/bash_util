@@ -36,6 +36,7 @@ this script source a followd script:
 - cdrom.sh
 - docker.sh
 - maven.sh
+- prompt.sh
 
 ## pathUtil.sh
 This script configue a path tool.
@@ -230,5 +231,18 @@ Execute command: mvn versions:display-dependency-updates
 Syntax: *mvnUpdateVersion*
 Execute command: mvn versions:use-latest-versions
     
+## prompt.sh
+
+
+1. listcolor
+Syntax: *listcolor*
+List bash color 
+
+
+2. make_prompt
+Synatx: *make_prompt*
+Fonction to eval a bash PS1 value 
+
+
 
 

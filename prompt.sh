@@ -15,32 +15,32 @@ SEGMENT_RIGHT_SEPARATOR=$'\uE0B0'
 SEGMENT_LEFT_SEPARATOR=$'\uE0B2'
 
 
-function listcolor(){
-	for i in {0..255}; do printf "\e[48;5;${i}m %3d \e[0m" $i; [[ $(( ($i+1) % 10 )) -eq 0 ]] && echo; done
+function listcolor() {
+    for i in {0..255}; do printf "\e[48;5;${i}m %3d \e[0m" $i; [[ $(( ($i+1) % 10 )) -eq 0 ]] && echo; done
 
 }
 
 function make_prompt() {
-  local VIOLET="\[\e[38;5;171m\]"
-  local CYAN="\[\e[36m\]"
-  local GREEN="\[\e[38;5;83m\]"
-  local RESET="\[\e[0m\]"
-  local left=$'\uE0B2' 
-  local right=$'\uE0B0'
+    local VIOLET="\[\e[38;5;171m\]"
+    local CYAN="\[\e[36m\]"
+    local GREEN="\[\e[38;5;83m\]"
+    local RESET="\[\e[0m\]"
+    local left=$'\uE0B2'
+    local right=$'\uE0B0'
 
-  var="${VIOLET}\u@\h "
-  var="$var${GREEN}\W "
-  if insideGit
-  then
-  	 var="$var \[\e[30;101m\]${right} $(currentBranchGit)$(tracking_info)$(needCommit) \[\e[0;91m\]${right}"    
-  fi
-  if [[ -f pom.xml ||  -f package.json ]]
-  then
-    var="$var\[\e[30;106m\]${right} $(mvnArtefactVersion)$(npmNameVersion) \[\e[96;40m\]${right}" 
-  fi
-  var="$var${RESET} \\$"
-  
-  echo "$var "
+    var="${VIOLET}\u@\h "
+    var="$var${GREEN}\W "
+    if insideGit
+    then
+        var="$var \[\e[30;101m\]${right} $(currentBranchGit)$(tracking_info)$(needCommit) \[\e[0;91m\]${right}"
+    fi
+    if [[ -f pom.xml ||  -f package.json ]]
+    then
+        var="$var\[\e[30;106m\]${right} $(mvnArtefactVersion)$(npmNameVersion) \[\e[96;40m\]${right}"
+    fi
+    var="$var${RESET} \\$"
+
+    echo "$var "
 }
 
 PROMPT_COMMAND='PS1=$(make_prompt)'
