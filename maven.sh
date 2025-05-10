@@ -39,63 +39,63 @@ function mvnTransitionalDependencies() {
     isMavenProject
     if [[ $? -eq 0 ]]
     then
-      mkdir target -p
-      mvn dependency:tree -DoutputFile=target/dep.txt -DoutputType=text 1>/dev/null 
-	  more target/dep.txt | grep  "^|"  | awk -F "\- " '{ print $2}' | awk -F ":" '{print  "<dependency><groupId>"$1"</groupId><artifactId>"$2"</artifactId><version>"$4"</version><scope>"$5"</scope></dependency>"}'
-	fi
+        mkdir target -p
+        mvn dependency:tree -DoutputFile=target/dep.txt -DoutputType=text 1>/dev/null
+        more target/dep.txt | grep  "^|"  | awk -F "\- " '{ print $2}' | awk -F ":" '{print  "<dependency><groupId>"$1"</groupId><artifactId>"$2"</artifactId><version>"$4"</version><scope>"$5"</scope></dependency>"}'
+    fi
 }
 
-function mvnAddNewDep(){
-	# Vérifier que le fichier pom.xml existe
-if [ ! -f "pom.xml" ]; then
-    echo "Le fichier pom.xml n'existe pas dans le répertoire courant."
-else
+function mvnAddNewDep() {
+    # Vérifier que le fichier pom.xml existe
+    if [ ! -f "pom.xml" ]; then
+        echo "Le fichier pom.xml n'existe pas dans le répertoire courant."
+    else
 
 
-# Vérifier que les arguments nécessaires sont fournis
-if [ "$#" -ne 4 ]; then
-    echo "Usage: $0 <groupId> <artifactId> <version> <scope>"
-else
+        # Vérifier que les arguments nécessaires sont fournis
+        if [ "$#" -ne 4 ]; then
+            echo "Usage: $0 <groupId> <artifactId> <version> <scope>"
+        else
 
-GROUP_ID=$1
-ARTIFACT_ID=$2
-VERSION=$3
-COMPILE=$4
+            GROUP_ID=$1
+            ARTIFACT_ID=$2
+            VERSION=$3
+            COMPILE=$4
 
-xmlstarlet ed -L  \
-	-N x="http://maven.apache.org/POM/4.0.0" \
-    -s "/x:project/x:dependencies" -t elem -n "dependency" -v "" \
-   pom.xml
+            xmlstarlet ed -L  \
+                -N x="http://maven.apache.org/POM/4.0.0" \
+                -s "/x:project/x:dependencies" -t elem -n "dependency" -v "" \
+                pom.xml
 
-xmlstarlet ed -L  \
-  -N x="http://maven.apache.org/POM/4.0.0" \
-  -s "/x:project/x:dependencies/x:dependency[last()]" -t elem -n "groupId" -v "$GROUP_ID" \
-  -s "/x:project/x:dependencies/x:dependency[last()]" -t elem -n "artifactId" -v "$ARTIFACT_ID" \
-  -s "/x:project/x:dependencies/x:dependency[last()]" -t elem -n "version" -v "$VERSION" \
-  -s "/x:project/x:dependencies/x:dependency[last()]" -t elem -n   "scope" -v "$COMPILE" \
-  pom.xml
+            xmlstarlet ed -L  \
+                -N x="http://maven.apache.org/POM/4.0.0" \
+                -s "/x:project/x:dependencies/x:dependency[last()]" -t elem -n "groupId" -v "$GROUP_ID" \
+                -s "/x:project/x:dependencies/x:dependency[last()]" -t elem -n "artifactId" -v "$ARTIFACT_ID" \
+                -s "/x:project/x:dependencies/x:dependency[last()]" -t elem -n "version" -v "$VERSION" \
+                -s "/x:project/x:dependencies/x:dependency[last()]" -t elem -n   "scope" -v "$COMPILE" \
+                pom.xml
 
 
-echo "La dépendance ${GROUP_ID}:${ARTIFACT_ID}:${VERSION}  scope ${COMPILE} a été ajoutée avec succès au fichier pom.xml."
-fi
-fi
-} 
+            echo "La dépendance ${GROUP_ID}:${ARTIFACT_ID}:${VERSION}  scope ${COMPILE} a été ajoutée avec succès au fichier pom.xml."
+        fi
+    fi
+}
 
 function mvnTransitionalDependenciesUpdate() {
     isMavenProject
     if [[ $? -eq 0 ]]
     then
-      mkdir target -p
-      mvn dependency:tree -DoutputFile=target/dep.txt -DoutputType=text 1>/dev/null 
-for l in $( more target/dep.txt | grep  "^|"  | awk -F "\- " '{ print $2}' )
-	 do
-		 GROUP_ID=$(echo $l | awk -F ":" '{print $1}')
-		ARTIFACT_ID=$(echo $l | awk -F ":" '{print $2}')
-		VERSION=$(echo $l | awk -F ":" '{print $4}')
-		COMPILE=$(echo $l | awk -F ":" '{print $5}')
-	  	mvnAddNewDep "$GROUP_ID" "$ARTIFACT_ID" "$VERSION" "$COMPILE"
-   done
-   fi
+        mkdir target -p
+        mvn dependency:tree -DoutputFile=target/dep.txt -DoutputType=text 1>/dev/null
+        for l in $( more target/dep.txt | grep  "^|"  | awk -F "\- " '{ print $2}' )
+        do
+            GROUP_ID=$(echo $l | awk -F ":" '{print $1}')
+            ARTIFACT_ID=$(echo $l | awk -F ":" '{print $2}')
+            VERSION=$(echo $l | awk -F ":" '{print $4}')
+            COMPILE=$(echo $l | awk -F ":" '{print $5}')
+            mvnAddNewDep "$GROUP_ID" "$ARTIFACT_ID" "$VERSION" "$COMPILE"
+        done
+    fi
 }
 
 
