@@ -14,7 +14,7 @@
 SEGMENT_RIGHT_SEPARATOR=$'\uE0B0'
 SEGMENT_LEFT_SEPARATOR=$'\uE0B2'
 
-<
+
 function listcolor(){
 	for i in {0..255}; do printf "\e[48;5;${i}m %3d \e[0m" $i; [[ $(( ($i+1) % 10 )) -eq 0 ]] && echo; done
 
