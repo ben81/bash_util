@@ -27,7 +27,7 @@ function mvnTree() {
 }
 
 function mvnCheckVersion() {
-    mvn versions:display-dependency-updates
+    mvn versions:display-dependency-updates  
 }
 
 function mvnUpdateVersion() {
