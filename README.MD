@@ -74,7 +74,7 @@ This function cleanning a a PATH variable.
    1. remove unexisting folder.
    2. remove duplicate foler.
 
-## generateDoc.sh
+## util/generateDoc.sh
 
 This script generate a PDF from README.MD
 

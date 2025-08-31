@@ -10,6 +10,8 @@
 #THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+MAVEN_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "maven script ${MAVEN_SCRIPT_DIR}"
 
 
 function isMavenProject() {
@@ -27,7 +29,7 @@ function mvnTree() {
 }
 
 function mvnCheckVersion() {
-    mvn versions:display-dependency-updates  
+    mvn versions:display-dependency-updates
 }
 
 function mvnUpdateVersion() {
@@ -112,4 +114,15 @@ function mvnArtefactVersion() {
         # Afficher les résultats
         echo "${artifactId}@${version}"
     fi
+}
+
+
+function mvnFormat(){
+	if [ -f "pom.xml" ]; then
+		FOLDER=$PWD
+		cd $MAVEN_SCRIPT_DIR/pom
+		mvn sortpom:sort  "-Dtarget.pom=${FOLDER}/pom.xml"	
+		cd "${FOLDER}"
+	fi	
+	
 }
