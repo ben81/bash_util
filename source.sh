@@ -12,3 +12,6 @@ source ${SCRIPT_DIR}/maven.sh
 source ${SCRIPT_DIR}/npmUtil.sh
 source ${SCRIPT_DIR}/prompt.sh
 
+function resourceScript() {
+    source  ${SCRIPT_DIR}/source.sh
+}

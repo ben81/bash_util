@@ -11,7 +11,7 @@
 
 
 MAVEN_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo "maven script ${MAVEN_SCRIPT_DIR}"
+#echo "maven script ${MAVEN_SCRIPT_DIR}"
 
 
 function isMavenProject() {
@@ -117,12 +117,12 @@ function mvnArtefactVersion() {
 }
 
 
-function mvnFormat(){
-	if [ -f "pom.xml" ]; then
-		FOLDER=$PWD
-		cd $MAVEN_SCRIPT_DIR/pom
-		mvn sortpom:sort  "-Dtarget.pom=${FOLDER}/pom.xml"	
-		cd "${FOLDER}"
-	fi	
-	
+function mvnFormat() {
+    if [ -f "pom.xml" ]; then
+        FOLDER=$PWD
+        cd $MAVEN_SCRIPT_DIR/pom
+        mvn sortpom:sort  "-Dtarget.pom=${FOLDER}/pom.xml"
+        cd "${FOLDER}"
+    fi
+
 }

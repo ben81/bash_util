@@ -170,3 +170,20 @@ function currentBranchGit() {
         echo "[$(git branch --show-current)]"
     fi
 }
+
+
+function gitPrompt() {
+    insideGit
+    if [[ $? -eq 0 ]]
+    then
+        printf "[$(git branch --show-current)] "
+        commitIstagged
+        if [[ $? -eq 0 ]]
+        then
+            printf "<$(git tag --contains HEAD --column)> "
+        fi
+        printf "$(tracking_info)$(needCommit)\n"
+    fi
+
+
+}

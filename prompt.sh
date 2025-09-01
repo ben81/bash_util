@@ -33,7 +33,7 @@ function make_prompt() {
     var="$var${GREEN}\W "
     if insideGit
     then
-        var="$var \[\e[30;101m\]${right} $(currentBranchGit)$(tracking_info)$(needCommit) \[\e[0;91m\]${right}"
+        var="$var \[\e[30;101m\]${right} $(gitPrompt) \[\e[0;91m\]${right}"
     fi
     if [[ -f pom.xml ||  -f package.json ]]
     then

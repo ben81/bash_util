@@ -51,7 +51,7 @@ this function list a folder in PATH variable
 
 2. addPath
 
-Syntax: *addPath \<folder\>*.
+Syntax: *addPath \<folder\>* .
 
 This function add a given \<folder\> into the PATH in first folder.
 
@@ -67,7 +67,7 @@ NB: completion is configured to propose directory present into a PATH variable
 
 4. cleanPath
 
-Syntax: *cleanPath*.
+Syntax: *cleanPath* .
 
 This function cleanning a a PATH variable.
 
