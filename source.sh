@@ -1,4 +1,10 @@
 
+if [[ "$0" == "$BASH_SOURCE" ]]; then
+    echo "Erreur : ce script doit être sourcé, pas exécuté." >&2
+    exit 1
+fi
+
+
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 echo ${SCRIPT_DIR}

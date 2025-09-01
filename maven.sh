@@ -13,6 +13,10 @@
 MAVEN_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #echo "maven script ${MAVEN_SCRIPT_DIR}"
 
+if [[ "$0" == "$BASH_SOURCE" ]]; then
+    echo "Erreur : ce script doit être sourcé, pas exécuté." >&2
+    exit 1
+fi
 
 function isMavenProject() {
     test -f pom.xml
