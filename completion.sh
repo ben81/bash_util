@@ -6,9 +6,16 @@ if [[ "$0" == "$BASH_SOURCE" ]]; then
 fi
 
 
-echo init npm completion
-source <(npm completion)
+which npm > /dev/null
+if [[ $? -eq 0 ]]
+then
+    echo init npm completion
+    source <(npm completion)
+fi
 
-echo init pandoc completion
-source <(pandoc --bash-completion)
-
+which pandoc > /dev/null
+if [[ $? -eq 0 ]]
+then
+    echo init pandoc completion
+    source <(pandoc --bash-completion)
+fi
