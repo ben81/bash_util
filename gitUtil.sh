@@ -79,7 +79,7 @@ function findIgnore() {
 #
 # use a return code for detect
 #
-function hasneedCommit() {
+function hasNeedCommit() {
     insideGit
     if [[ $? -eq 0 ]]
     then
@@ -91,10 +91,22 @@ function hasneedCommit() {
 
 
 function needCommit() {
-    hasneedCommit
+    hasNeedCommit
     if [[ $? -eq 0 ]]
     then
         echo "*"
+    fi
+}
+
+function ignoredFolder(){
+	insideGit
+    if [[ $? -eq 0 ]]
+    then
+    	git check-ignore . >/dev/null 
+        if [[ $? -eq 0 ]]
+        then
+        	echo " [Ignored folder]"
+        fi    	
     fi
 }
 
@@ -187,7 +199,7 @@ function gitPrompt() {
         then
             printf "<$(git tag --contains HEAD --column)> "
         fi
-        printf "$(tracking_info)$(needCommit)\n"
+        printf "$(tracking_info)$(needCommit)$(ignoredFolder)\n"
     fi
 
 
