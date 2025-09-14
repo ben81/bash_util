@@ -70,7 +70,7 @@ function findIgnore() {
     insideGit
     if [[ $? -eq 0 ]]
     then
-        find  -exec git check-ignore {} -v ';'
+        find  -exec git check-ignore {} -v ';'|  column -t    -o ' '
     else
         echo 'Not a git repo'
     fi
