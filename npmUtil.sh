@@ -51,3 +51,47 @@ function npmNameVersion() {
     fi
 }
 
+
+
+# Exemple d'utilisation :
+# format_json "mon_fichier.json"
+# Fonction pour formatter un fichier JSON si valide
+function format_json() {
+    local file="$1"
+
+    # Vérifie que le fichier existe
+    if [[ ! -f "$file" ]]; then
+        echo "Erreur : le fichier '$file' n'existe pas." >&2
+        return 1
+    fi
+
+    # Teste si le fichier est un JSON valide
+    if jq empty "$file" &> /dev/null; then
+        # Si valide, formate le fichier avec jq et sponge
+        jq . "$file" | sponge "$file"
+        echo "Le fichier '$file' a été formaté avec succès."
+    else
+        echo "Le fichier '$file' n'est pas un JSON valide. Aucune modification apportée."
+        return 1
+    fi
+}
+
+function _format_json_completion() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=""
+
+    # Si on complète le premier argument, propose les fichiers .json
+    if [[ ${COMP_CWORD} -eq 1 ]]; then
+        COMPREPLY=($(compgen -f -- "${cur}" | grep -i '\.json$'))
+    fi
+}
+
+# Enregistre la fonction de complétion pour la commande `format_json_if_valid`
+complete -F _format_json_completion format_json
+
+
+
+

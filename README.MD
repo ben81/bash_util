@@ -36,6 +36,7 @@ this script source a followd script:
 - cdrom.sh
 - docker.sh
 - maven.sh
+- npmUtil.sh
 - prompt.sh
 
 ## pathUtil.sh
