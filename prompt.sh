@@ -40,7 +40,7 @@ function make_prompt() {
     fi
     if [[ -f pom.xml ||  -f package.json ]]
     then
-        var="$var\[\e[30;106m\]${right} $(mvnArtefactVersion)$(npmNameVersion) \[\e[96;40m\]${right}"
+        var="$var\[\e[30;106m\]${right} $(mvnArtefactVersion) $(npmNameVersion) \[\e[96;40m\]${right}"
     fi
     var="$var${RESET} \\$"
 

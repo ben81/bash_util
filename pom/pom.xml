@@ -16,7 +16,7 @@
           <sortProperties>true</sortProperties>
           <sortDependencies>groupId,artifactId</sortDependencies>
           <sortPlugins>groupId,artifactId</sortPlugins>
-          <sortModules>true</sortModules>
+          <sortModules>false</sortModules>
           <nrOfIndents>2</nrOfIndents>
           <expandEmptyElements>false</expandEmptyElements>
           <createBackupFile>true</createBackupFile>
