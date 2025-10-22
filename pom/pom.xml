@@ -17,7 +17,7 @@
           <sortDependencies>groupId,artifactId</sortDependencies>
           <sortPlugins>groupId,artifactId</sortPlugins>
           <sortModules>false</sortModules>
-          <nrOfIndents>2</nrOfIndents>
+          <nrOfIndentSpace>2</nrOfIndentSpace>
           <expandEmptyElements>false</expandEmptyElements>
           <createBackupFile>true</createBackupFile>
           <pomFile>${target.pom}</pomFile>
