@@ -28,6 +28,7 @@ This script install tools
 ## source.sh ###
 
 Syntax: *source source.sh*
+
 this script source a followd script:
 
 - pathUtil.sh
@@ -38,6 +39,7 @@ this script source a followd script:
 - maven.sh
 - npmUtil.sh
 - prompt.sh
+- java.sh
 
 ## pathUtil.sh
 This script configue a path tool.
@@ -83,7 +85,7 @@ This script generate a PDF from README.MD
 
 Configure completion
 you need source this script in bash
-Syntax: *source completion.sh*'
+Syntax: *source completion.sh*
 
 
 - Completion for NPM
@@ -94,7 +96,7 @@ Syntax: *source completion.sh*'
 
 Script for git
 you need source this script in bash
-Syntax: *source gitUtil.sh*'
+Syntax: *source gitUtil.sh*
 
 
 1. insideGit
@@ -215,21 +217,25 @@ Syntax: *source maven.sh*'
 1. mvnCleanPackage
 
 Syntax: *mvnCleanPackage*
+
 Execute command: mvn clean package
 
 2. mvnTree
 
 Syntax: *mvnTree*
+
 Execute command: mvn dependency:tree
 
 3. mvnCheckVersion
 
 Syntax: *mvnCheckVersion*
+
 Execute command: mvn versions:display-dependency-updates
 
 4. mvnUpdateVersion
 
 Syntax: *mvnUpdateVersion*
+
 Execute command: mvn versions:use-latest-versions
     
 ## prompt.sh
@@ -237,11 +243,13 @@ Execute command: mvn versions:use-latest-versions
 
 1. listcolor
 Syntax: *listcolor*
+
 List bash color 
 
 
 2. make_prompt
 Synatx: *make_prompt*
+
 Fonction to eval a bash PS1 value 
 
 
@@ -250,12 +258,14 @@ Fonction to eval a bash PS1 value
 
 1. setJavaHome
 Syntax: *setJavaHome*
+
 set the JAVA_HOME variable and update PATH with $JAVA_HOME/bin
 
 this function has completion with __setJavaHome
 
 2. unsetJavaHome
 Syntax: *unsetJavaHome*
+
 unset the JAVA_HOME variable and remove $JAVA_HOME/bin in PATH variable
 
 3. javaHome
