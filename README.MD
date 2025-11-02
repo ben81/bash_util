@@ -245,5 +245,23 @@ Synatx: *make_prompt*
 Fonction to eval a bash PS1 value 
 
 
+## java.sh
+
+
+1. setJavaHome
+Syntax: *setJavaHome*
+set the JAVA_HOME variable and update PATH with $JAVA_HOME/bin
+
+this function has completion with __setJavaHome
+
+2. unsetJavaHome
+Syntax: *unsetJavaHome*
+unset the JAVA_HOME variable and remove $JAVA_HOME/bin in PATH variable
+
+3. javaHome
+Syntax: *javaHome*
+
+display the JAVA_HOME variable
+
 
 

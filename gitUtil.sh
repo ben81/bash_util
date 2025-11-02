@@ -98,15 +98,15 @@ function needCommit() {
     fi
 }
 
-function ignoredFolder(){
-	insideGit
+function ignoredFolder() {
+    insideGit
     if [[ $? -eq 0 ]]
     then
-    	git check-ignore . >/dev/null 
+        git check-ignore . >/dev/null
         if [[ $? -eq 0 ]]
         then
-        	echo " [Ignored folder]"
-        fi    	
+            echo " [Ignored folder]"
+        fi
     fi
 }
 

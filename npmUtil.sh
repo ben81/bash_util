@@ -20,23 +20,23 @@ function isNpm() {
 }
 
 
-function specificNpmNameVersion(){	
-	 if [[ "node_modules" = "$(basename $(dirname "$1"))" ]]
-	 then
-	 	if [[ -f "$(dirname $(dirname '$1'))/package.json" ]]
-	 	then 	 
-	 		specificNpmNameVersion $(dirname $(dirname $1))
-       fi
-       else
+function specificNpmNameVersion() {
+    if [[ "node_modules" = "$(basename $(dirname "$1"))" ]]
+    then
+        if [[ -f "$(dirname $(dirname '$1'))/package.json" ]]
+        then
+            specificNpmNameVersion $(dirname $(dirname $1))
+        fi
+    else
         if [[ "node_modules" = "$(basename $(dirname $(dirname "$1")))" ]]
-	 then
-	 	if [[ -f "$(dirname $(dirname $(dirname '$1')))/package.json" ]]
-	 	then 	 
-	 		specificNpmNameVersion $(dirname $(dirname $(dirname $1)))
-       fi
-       fi
-	 fi
-	 jq -r '"\(.name)@\(.version)"' $1/package.json
+        then
+            if [[ -f "$(dirname $(dirname $(dirname '$1')))/package.json" ]]
+            then
+                specificNpmNameVersion $(dirname $(dirname $(dirname $1)))
+            fi
+        fi
+    fi
+    jq -r '"\(.name)@\(.version)"' $1/package.json
 }
 
 
@@ -46,8 +46,8 @@ function specificNpmNameVersion(){
 function npmNameVersion() {
     isNpm
     if [[ $? -eq 0 ]]
-    then    
-       specificNpmNameVersion $PWD |  paste -sd'#' - | sed 's/#/ # /g'
+    then
+        specificNpmNameVersion $PWD |  paste -sd'#' - | sed 's/#/ # /g'
     fi
 }
 
