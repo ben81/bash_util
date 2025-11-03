@@ -57,7 +57,10 @@ function setJavaHome() {
         then
             OLD_JAVA_HOME=$JAVA_HOME
             JAVA_HOME=$1
+            if [[ -n "$OLD_JAVA_HOME" ]]
+            then
             removePath "${OLD_JAVA_HOME}/bin/" > /dev/null
+            fi
             addPath "$1/bin/"
             echo "update JAVA_HOME: ${JAVA_HOME}"
             echo "update PATH add in first : ${JAVA_HOME}/bin"
@@ -71,7 +74,10 @@ function setJavaHome() {
 function unsetJavaHome() {
     OLD_JAVA_HOME=$JAVA_HOME
     unset JAVA_HOME
-    removePath "${OLD_JAVA_HOME}/bin/" > /dev/null
+    if [[ -n "$OLD_JAVA_HOME" ]]
+      then
+      removePath "${OLD_JAVA_HOME}/bin/" > /dev/null
+    fi
 }
 
 function javaHome() {
