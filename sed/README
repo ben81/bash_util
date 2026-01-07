@@ -1,0 +1,10 @@
+fichier de pattern sed pour mettre à jour des fichiers
+
+encodeHtmlEntities.sed !
+ pour remplacer les lettres avec accents par des entités html
+
+encodeHtmlLettersWithoutAccent.sed:
+ pour remplacer les lettres avec accents sans accent:
+
+sed/htmlentities.sed:
+ pour remplacer les entité html par leur valeur réel
