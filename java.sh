@@ -14,11 +14,11 @@ function __setJavaHome() {
     local WORDS
     local index=1
     WORDS=()
-    for release in $( find  /usr/lib/jvm -name  "release")
+    for release in $( find  /usr/lib/jvm -name  "release" -type f)
     do
         local jvm_dir=$(dirname $release)
         local jvm_name=$(basename "$jvm_dir")
-        local description=$(echo $(grep "JAVA_RUNTIME_VERSION=" $release | awk -F "=" '{ print $2}' )" - " $(grep "IMPLEMENTOR=" $release | awk -F "=" '{ print $2}' ) )
+        local description=$(echo $(grep -e "JAVA_RUNTIME_VERSION=" -e "FULL_VERSION=" $release | head -1 | awk -F "=" '{ print $2}' )" - " $(grep "IMPLEMENTOR=" $release | awk -F "=" '{ print $2}' )  | head -1)
         WORDS+=("$index|$jvm_dir|$description")
         ((index++))
     done
@@ -38,12 +38,12 @@ function __setJavaHome() {
                 IFS=\| read -ra SP <<<"$WORD"
                 if [ "${SP[1]:0:${#2}}" == "$2" ]; then
                     if [ -n "$FOR_DISPLAY" ]; then
-                        printf "%-*s\n" "$COLUMNS" "${SP[0]}: ${SP[1]} - ${SP[2]}"
+                        printf "%-*s\n" "$COLUMNS" "${SP[0]}: ${SP[1]} | ${SP[2]}"
                     else
                         echo "${SP[1]}"
                     fi
                 fi
-            done
+            done   
     ))
 }
 
