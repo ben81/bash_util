@@ -204,12 +204,15 @@ function gitPrompt() {
     if [[ $? -eq 0 ]]
     then
         printf "[$(git branch --show-current)] "
-        commitIstagged
-        if [[ $? -eq 0 ]]
-        then
-            printf "<$(git tag --contains HEAD --column)> "
+        if git rev-parse --verify HEAD >/dev/null 2>&1; then
+            commitIstagged
+            if [[ $? -eq 0 ]]
+            then
+                printf "<$(git tag --contains HEAD --column)> "
+            fi
+
+            printf "$(tracking_info)$(needCommit)$(ignoredFolder)\n"
         fi
-        printf "$(tracking_info)$(needCommit)$(ignoredFolder)\n"
     fi
 
 

@@ -43,7 +43,7 @@ function __setJavaHome() {
                         echo "${SP[1]}"
                     fi
                 fi
-            done   
+            done
     ))
 }
 
@@ -59,7 +59,7 @@ function setJavaHome() {
             JAVA_HOME=$1
             if [[ -n "$OLD_JAVA_HOME" ]]
             then
-            removePath "${OLD_JAVA_HOME}/bin/" > /dev/null
+                removePath "${OLD_JAVA_HOME}/bin/" > /dev/null
             fi
             addPath "$1/bin/"
             echo "update JAVA_HOME: ${JAVA_HOME}"
@@ -75,8 +75,8 @@ function unsetJavaHome() {
     OLD_JAVA_HOME=$JAVA_HOME
     unset JAVA_HOME
     if [[ -n "$OLD_JAVA_HOME" ]]
-      then
-      removePath "${OLD_JAVA_HOME}/bin/" > /dev/null
+    then
+        removePath "${OLD_JAVA_HOME}/bin/" > /dev/null
     fi
 }
 
