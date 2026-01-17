@@ -1,6 +1,8 @@
 
 # script Bash #####################
 
+---
+
 ## install #####################
 
 This folder contains scripts to install various tools.
@@ -30,21 +32,24 @@ Installs Python tools:
 - beauty
 - shdoc
 
+---
+
 ## `source.sh`
 
 **Syntax:** `source source.sh`
 
 This script sources the following scripts:
 
-- pathUtil.sh
-- gitUtil.sh
-- completion.sh
-- cdrom.sh
-- docker.sh
-- maven.sh
-- npmUtil.sh
-- prompt.sh
-- java.sh
+- [pathUtil.sh](#pathUtil.sh)
+- [gitUtil.sh](#gitUtil.sh)
+- [completion.sh](#completion.sh)
+- [cdrom.sh](#cdrom.sh)
+- [docker.sh](#docker.sh)
+- [maven.sh](#maven.sh)
+- [npmUtil.sh](#npmUtil.sh)
+- [prompt.sh](#prompt.sh)
+- [java.sh](#java.sh)
+
 
 ## pathUtil.sh
 This script configue a path tool.
@@ -55,206 +60,245 @@ Syntax: *source pathUtil.sh*
 
 Syntax: *path*
 
-this function list a folder in PATH variable
+Lists all folders in the `PATH` variable.
 
 ### addPath
 
 Syntax: *addPath \<folder\>* .
 
-This function add a given \<folder\> into the PATH in first folder.
+Adds the specified `<folder>` to the beginning of the `PATH` variable.
 
-NB: completion is configured to add directory
+*Note:* Completion is configured to suggest directories.
 
 ### removePath
 
 Syntax: *removePath \<folder\>* .
 
-This function remove a given \<folder\> into the PATH.
+Removes the specified `<folder>` from the `PATH` variable.
 
-NB: completion is configured to propose directory present into a PATH variable
+*Note:* Completion suggests directories currently in `PATH`.
 
 ### cleanPath
 
 Syntax: *cleanPath* .
 
-This function cleanning a a PATH variable.
+Cleans the `PATH` variable by:
 
    1. remove unexisting folder.
    2. remove duplicate foler.
-
-## util/generateDoc.sh
-
-This script generate a PDF from README.MD
+   
+---
 
 ## completion.sh
 
-Configure completion
-you need source this script in bash
-Syntax: *source completion.sh*
+**Syntax:** `source completion.sh`
 
+Configures completion for:
+- NPM
+- Pandoc
 
-- Completion for NPM
-- Completion for pandoc
-
+---
 
 ## git_util.sh
 
-Script for git
-you need source this script in bash
-Syntax: *source gitUtil.sh*
+**Syntax:** `source gitUtil.sh`
+
+Script for Git utilities.
 
 
 ### insideGit
 
-Syntax: *insideGit*
+**Syntax:** `insideGit`
 
-return a return  code ( $? ) 0 if a current directory is a in git working tree , otherwise 1
+Returns an exit code (`$?`) of `0` if the current directory is in a Git working tree; otherwise, returns `1`.
+
 
 ### gitRoot
 
-Syntax: *gitRoot*
+**Syntax:** `gitRoot`
+   
+Displays the absolute path to the root of the current Git working tree.
 
-Display a absolute path to a root of current git working tree
+### **`cdGitRoot`**
 
-### cdGitRoot
+   **Syntax:** `cdGitRoot`
+   
+   Changes the directory to the root of the current Git working tree.
 
-Syntax: *cdGitRoot*
+### **`pwdGit`**
 
-Change directory to a root of current git working tree
+   **Syntax:** `pwdGit`
+   
+   Displays the relative path within the Git directory.
 
-### pwdGit
+### **`repoGit`**
 
-Syntax: *pwdGit*
+   **Syntax:** `repoGit`
+   
+   Finds a Git repository in the current subfolders.
 
-Display a relative path in git directory
+### **`repoWorkTree`**
 
-### repoGit
+   **Syntax:** `repoWorkTree`
+   
+   Finds a Git working tree in the current subfolders.
 
-Syntax: *repoGit*
+### **`lsIgnore`**
 
-Find a git repository in currren sub folder
+   **Syntax:** `lsIgnore`
+   
+   Lists files ignored by Git in the current directory.
 
-### repoWorkTree
+### **`findIgnore`**
 
-Syntax: *repoWorkTree*
+   **Syntax:** `findIgnore`
+   
+   Lists files ignored by Git in the current directory and its subdirectories.
 
-Find a git working tree  in currrent sub folder
+### **`needCommit`**
 
-### lsIgnore
+   **Syntax:** `needCommit`
+   
+   Returns an exit code (`$?`) of `0` if the current directory is in a Git working tree and has files to commit; otherwise, returns `1`.
 
-Syntax: *lsIgnore*
+### **`initAliasCdGitRepo`**
 
-List a file in git ignore in current directory
+    **Syntax:** `initAliasCdGitRepo`
+    
+    Finds Git working trees in the current subfolders and identifies Maven or Node projects.
+    Creates an alias for each:
+    - Git working tree found.
+    - Maven project in the repository.
+    - Node project in the repository.
 
-### findIgnore
-
-Syntax: *findIgnore*
-
-List a file in git ignore in current directory and sub directory
-
-### needCommit
-
-Syntax: *needCommit*
-
-Return a return  code ( $? ) 0 if a current directory is a in git working tree and have file to commit , otherwise 0
-
-### initAliasCdGitRepo
-
-Syntax: *initAliasCdGitRepo*
-
-Find a git working tree  in currrent sub folder  and find a maven or node project.
-
-Create an alias for each
-
- - git working tree  found
- - maven project into repository found
- - node project into repository found
-
-
+---
 
 ## cdrom.sh
 
-Script for cd rom 
+**Syntax:** `source cdrom.sh`
 
-you need source this script in bash
-Syntax: *source cdrom.sh*'
+Script for CD-ROM utilities.
 
-### findCdrom
+###  **`findCdrom`**
 
-Syntax: *findCdrom*
+   **Syntax:** `findCdrom`
+   
+   Finds a CD-ROM folder.
 
-Find a cdrom folder 
+###  **`cdfindCdrom`**
 
-### cdfindCdrom
+   **Syntax:** `cdfindCdrom`
+   
+   Changes the directory to the CD-ROM folder.
 
-Syntax: *cdfindCdrom*
-
-change directory to cdrom folder 
+---
 
 ## docker.sh
 
-Script for docker
-you need source this script in bash
-Syntax: *source docker.sh*'
+**Syntax:** `source docker.sh`
 
+Script for Docker utilities.
 
 ### dockerMount
   
 Syntax: *dockerMount*
 
-Lst all docker mount 
+Lists all Docker mounts.
 
 ### dockerPs
 
 Syntax: *dockerPs*
 
-List all docker process
+Lists all Docker processes.
 
+###  dockerImage
+
+Syntax: *dockerImage*
+
+Lists all Docker images. The result is a table format.
+
+###  dockerImageJs
+
+Syntax: *dockerImageJs*
+
+Lists all Docker images. The result is a json format.
+
+
+---
 
 ## maven.sh
 
-Script for maven
-you need source this script in bash
-Syntax: *source maven.sh*'
+**Syntax:** `source maven.sh`
+
+Script for Maven utilities.
 
 
+### isMavenProject
+
+Syntax: *isMavenProject*
+
+Returns an exit code (`$?`) of `0` if the current directory contains a pom.xml; otherwise, returns `1`.
 
 ### mvnCleanPackage
 
 Syntax: *mvnCleanPackage*
 
-Execute command: mvn clean package
+Executes the command: `mvn clean package`.
 
 ### mvnTree
 
 Syntax: *mvnTree*
 
-Execute command: mvn dependency:tree
+Executes the command: `mvn dependency:tree`.
 
 ### mvnCheckVersion
 
 Syntax: *mvnCheckVersion*
 
-Execute command: mvn versions:display-dependency-updates
+Executes the command: `mvn versions:display-dependency-updates`.
 
 ### mvnUpdateVersion
 
 Syntax: *mvnUpdateVersion*
 
-Execute command: mvn versions:use-latest-versions
+Executes the command: `mvn versions:use-latest-versions`.
+
+### mvnTransitionalDependencies
+
+Syntax: *mvnTransitionalDependencies*
+
+### mvnAddNewDep
+
+Syntax: *mvnTransitionalDependencies*
+
+### mvnTransitionalDependenciesUpdate() 
+
+Syntax: *mvnTransitionalDependenciesUpdate*
+
+### mvnArtefactVersion() 
+
+Syntax: *mvnArtefactVersion*
+
+### mvnFormat() 
+
+Syntax: *mvnFormat*
+    
+    
+---
     
 ## prompt.sh
 
 ### listcolor
 Syntax: *listcolor*
 
-List bash color 
+Lists available Bash colors.
 
 ### make_prompt
 Synatx: *make_prompt*
 
-Fonction to eval a bash PS1 value 
+Function to evaluate the `PS1` value in Bash.
 
+---
 
 ## java.sh
 
@@ -262,19 +306,22 @@ Fonction to eval a bash PS1 value
 ### setJavaHome
 Syntax: *setJavaHome*
 
-set the JAVA_HOME variable and update PATH with $JAVA_HOME/bin
+Sets the `JAVA_HOME` variable and updates `PATH` with `$JAVA_HOME/bin`.
+*Note:* Completion is configured with `__setJavaHome`.
 
-this function has completion with __setJavaHome
 
 ### unsetJavaHome
 Syntax: *unsetJavaHome*
 
-unset the JAVA_HOME variable and remove $JAVA_HOME/bin in PATH variable
+Unsets the `JAVA_HOME` variable and removes `$JAVA_HOME/bin` from the `PATH`.
 
 ### javaHome
 Syntax: *javaHome*
 
-display the JAVA_HOME variable
+Displays the `JAVA_HOME` variable.
 
+---
 
+## util/generateDoc.sh
 
+This script generate a PDF from README.MD
