@@ -3,33 +3,38 @@
 
 ## install #####################
 
-this folder define a script for install tool.
+This folder contains scripts to install various tools.
 
-### install/installDocker.sh
+### install/debian/installDocker.sh
 
-This script install docker in debian for current user
+Installs Docker on Debian for the current user.
 
-### install/installPandoc.sh
+### install/debian//installPandoc.sh
 
-This script install pandoc
+Installs Pandoc on Debian.
 
-### install/installPythonTool.sh
+### install/debian//installVsCode.sh
 
-This script install python tools
-- beauty
+Installs Visual Studio Code on Debian.
 
-### install/installTool.sh
+### install/debian//installTool.sh
 
-This script install tools
+Installs the following tools on Debian:
 - libxml2-utils
 - jq
 - maven
 
-## source.sh ###
+### install/installPythonTool.sh
 
-Syntax: *source source.sh*
+Installs Python tools:
+- beauty
+- shdoc
 
-this script source a followd script:
+## `source.sh`
+
+**Syntax:** `source source.sh`
+
+This script sources the following scripts:
 
 - pathUtil.sh
 - gitUtil.sh
@@ -46,13 +51,13 @@ This script configue a path tool.
 you need source this script in bash
 Syntax: *source pathUtil.sh*
 
-1. path
+### path
 
 Syntax: *path*
 
 this function list a folder in PATH variable
 
-2. addPath
+### addPath
 
 Syntax: *addPath \<folder\>* .
 
@@ -60,7 +65,7 @@ This function add a given \<folder\> into the PATH in first folder.
 
 NB: completion is configured to add directory
 
-3. removePath
+### removePath
 
 Syntax: *removePath \<folder\>* .
 
@@ -68,7 +73,7 @@ This function remove a given \<folder\> into the PATH.
 
 NB: completion is configured to propose directory present into a PATH variable
 
-4. cleanPath
+### cleanPath
 
 Syntax: *cleanPath* .
 
@@ -99,61 +104,61 @@ you need source this script in bash
 Syntax: *source gitUtil.sh*
 
 
-1. insideGit
+### insideGit
 
 Syntax: *insideGit*
 
 return a return  code ( $? ) 0 if a current directory is a in git working tree , otherwise 1
 
-2. gitRoot
+### gitRoot
 
 Syntax: *gitRoot*
 
 Display a absolute path to a root of current git working tree
 
-3. cdGitRoot
+### cdGitRoot
 
 Syntax: *cdGitRoot*
 
 Change directory to a root of current git working tree
 
-4. pwdGit
+### pwdGit
 
 Syntax: *pwdGit*
 
 Display a relative path in git directory
 
-5. repoGit
+### repoGit
 
 Syntax: *repoGit*
 
 Find a git repository in currren sub folder
 
-6. repoWorkTree
+### repoWorkTree
 
 Syntax: *repoWorkTree*
 
 Find a git working tree  in currrent sub folder
 
-7. lsIgnore
+### lsIgnore
 
 Syntax: *lsIgnore*
 
 List a file in git ignore in current directory
 
-8. findIgnore
+### findIgnore
 
 Syntax: *findIgnore*
 
 List a file in git ignore in current directory and sub directory
 
-9. needCommit
+### needCommit
 
 Syntax: *needCommit*
 
 Return a return  code ( $? ) 0 if a current directory is a in git working tree and have file to commit , otherwise 0
 
-10. initAliasCdGitRepo
+### initAliasCdGitRepo
 
 Syntax: *initAliasCdGitRepo*
 
@@ -174,13 +179,13 @@ Script for cd rom
 you need source this script in bash
 Syntax: *source cdrom.sh*'
 
-1. findCdrom
+### findCdrom
 
 Syntax: *findCdrom*
 
 Find a cdrom folder 
 
-2. cdfindCdrom
+### cdfindCdrom
 
 Syntax: *cdfindCdrom*
 
@@ -193,13 +198,13 @@ you need source this script in bash
 Syntax: *source docker.sh*'
 
 
-1. dockerMount
+### dockerMount
   
 Syntax: *dockerMount*
 
 Lst all docker mount 
 
-2. dockerPs
+### dockerPs
 
 Syntax: *dockerPs*
 
@@ -214,25 +219,25 @@ Syntax: *source maven.sh*'
 
 
 
-1. mvnCleanPackage
+### mvnCleanPackage
 
 Syntax: *mvnCleanPackage*
 
 Execute command: mvn clean package
 
-2. mvnTree
+### mvnTree
 
 Syntax: *mvnTree*
 
 Execute command: mvn dependency:tree
 
-3. mvnCheckVersion
+### mvnCheckVersion
 
 Syntax: *mvnCheckVersion*
 
 Execute command: mvn versions:display-dependency-updates
 
-4. mvnUpdateVersion
+### mvnUpdateVersion
 
 Syntax: *mvnUpdateVersion*
 
@@ -240,14 +245,12 @@ Execute command: mvn versions:use-latest-versions
     
 ## prompt.sh
 
-
-1. listcolor
+### listcolor
 Syntax: *listcolor*
 
 List bash color 
 
-
-2. make_prompt
+### make_prompt
 Synatx: *make_prompt*
 
 Fonction to eval a bash PS1 value 
@@ -256,19 +259,19 @@ Fonction to eval a bash PS1 value
 ## java.sh
 
 
-1. setJavaHome
+### setJavaHome
 Syntax: *setJavaHome*
 
 set the JAVA_HOME variable and update PATH with $JAVA_HOME/bin
 
 this function has completion with __setJavaHome
 
-2. unsetJavaHome
+### unsetJavaHome
 Syntax: *unsetJavaHome*
 
 unset the JAVA_HOME variable and remove $JAVA_HOME/bin in PATH variable
 
-3. javaHome
+### javaHome
 Syntax: *javaHome*
 
 display the JAVA_HOME variable

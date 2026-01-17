@@ -213,7 +213,7 @@ function gitPrompt() {
 
             printf "$(tracking_info)$(needCommit)$(ignoredFolder)\n"
         else
-        	printf "$(needCommit)$(ignoredFolder)\n"        
+            printf "$(needCommit)$(ignoredFolder)\n"
         fi
     fi
 

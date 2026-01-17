@@ -15,16 +15,30 @@ if [[ "$0" == "$BASH_SOURCE" ]]; then
 fi
 
 
+function _lazyPandoc() {
+    # Load the real pandoc completion function
+    source <(pandoc --bash-completion)
+    # Call the real completion immediately
+    $(complete -p pandoc | awk -F "-F" '{ print $2}' | awk -F " " '{print $1}') "$@"
+}
+
+function _lazyNpm() {
+    # Load the real npm completion function
+    source <(npm completion)
+    # Call the real completion immediately
+    $(complete -p npm | awk -F "-F" '{ print $2}' | awk -F " " '{print $1}') "$@"
+}
+
 which npm > /dev/null
 if [[ $? -eq 0 ]]
 then
     echo init npm completion
-    source <(npm completion)
+    complete -F _lazyNpm npm
 fi
 
 which pandoc > /dev/null
 if [[ $? -eq 0 ]]
 then
     echo init pandoc completion
-    source <(pandoc --bash-completion)
+    complete -F _lazyPandoc pandoc
 fi

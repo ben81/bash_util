@@ -33,4 +33,12 @@ function dockerPs() {
     docker ps -a  --no-trunc --format  'table  {{.ID}}|{{.Image}}|{{.Names}}|{{.Networks}}|{{.Ports}}|{{.Label "com.docker.compose.project.config_files"}}'| column -t  -s '|' -o '|'
 }
 
+function dockerImage() {
+    docker images --format "table {{.ID}}|{{.Repository}}|{{.Tag}}|{{.Digest}}|{{.CreatedSince}}|{{.CreatedAt}}|{{.Size}}|{{.Containers}}|{{.SharedSize}}|{{.UniqueSize}}|{{.VirtualSize}}" | column -t -s '|' -o '|'
+}
+
+function dockerImageJs() {
+    docker images --format json | jq .
+}
+
 
