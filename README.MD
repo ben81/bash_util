@@ -271,18 +271,48 @@ Syntax: *mvnTransitionalDependencies*
 
 Syntax: *mvnTransitionalDependencies*
 
-### mvnTransitionalDependenciesUpdate() 
+### mvnTransitionalDependenciesUpdate
 
 Syntax: *mvnTransitionalDependenciesUpdate*
 
-### mvnArtefactVersion() 
+### mvnArtefactVersion
 
 Syntax: *mvnArtefactVersion*
 
-### mvnFormat() 
+### mvnFormat
 
 Syntax: *mvnFormat*
-    
+
+
+
+---
+
+## npmUtil.sh
+
+**Syntax:** `source npmUtil.sh`
+
+Script for npm utilities.
+
+### isNpm
+
+Syntax: *isNpm*
+ 
+### specificNpmNameVersion
+
+Syntax: *specificNpmNameVersion*
+ 
+### npmNameVersion
+
+Syntax: *npmNameVersion*
+
+### format_json
+
+Syntax: *format_json*
+
+### _format_json_completion
+
+Syntax: *_format_json_completion*
+
     
 ---
     
