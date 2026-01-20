@@ -230,59 +230,77 @@ Lists all Docker images. The result is a json format.
 
 **Syntax:** `source maven.sh`
 
-Script for Maven utilities.
+Script providing Maven utility functions.
 
 
 ### isMavenProject
 
-Syntax: *isMavenProject*
+**Syntax:** `isMavenProject`
 
-Returns an exit code (`$?`) of `0` if the current directory contains a pom.xml; otherwise, returns `1`.
+Returns exit code (`$?`) `0` if the current directory contains a `pom.xml`; otherwise returns `1`.
 
 ### mvnCleanPackage
 
-Syntax: *mvnCleanPackage*
+**Syntax:** `mvnCleanPackage`
 
-Executes the command: `mvn clean package`.
+Executes: `mvn clean package`.
+
 
 ### mvnTree
 
-Syntax: *mvnTree*
+**Syntax:** `mvnTree`
 
-Executes the command: `mvn dependency:tree`.
+Executes: `mvn dependency:tree`.
+
 
 ### mvnCheckVersion
 
-Syntax: *mvnCheckVersion*
+**Syntax:** `mvnCheckVersion`
 
-Executes the command: `mvn versions:display-dependency-updates`.
+Executes: `mvn versions:display-dependency-updates`.
+
+
 
 ### mvnUpdateVersion
 
-Syntax: *mvnUpdateVersion*
+**Syntax:** `mvnUpdateVersion`
 
-Executes the command: `mvn versions:use-latest-versions`.
+Executes: `mvn versions:use-latest-versions`.
+
 
 ### mvnTransitionalDependencies
 
-Syntax: *mvnTransitionalDependencies*
+**Syntax:** `mvnTransitionalDependencies`
+
+Lists transitive dependencies.
+
 
 ### mvnAddNewDep
 
-Syntax: *mvnTransitionalDependencies*
+**Syntax:** `mvnAddNewDep <groupId> <artifactId> <version> <scope>`
+
+Adds a new dependency to the Maven project.
+
 
 ### mvnTransitionalDependenciesUpdate
 
-Syntax: *mvnTransitionalDependenciesUpdate*
+**Syntax:** `mvnTransitionalDependenciesUpdate`
+
+Updates the `pom.xml` with transitive dependencies.
+
 
 ### mvnArtefactVersion
 
-Syntax: *mvnArtefactVersion*
+**Syntax:** `mvnArtefactVersion`
+
+Displays the Maven project name and version (used by the prompt).
+
 
 ### mvnFormat
 
-Syntax: *mvnFormat*
+**Syntax:** `mvnFormat`
 
+Formats the `pom.xml`.
 
 
 ---
