@@ -29,6 +29,15 @@ function _lazyNpm() {
     $(complete -p npm | awk -F "-F" '{ print $2}' | awk -F " " '{print $1}') "$@"
 }
 
+
+function _lazyNode() {
+    # Load the real npm completion function
+    source <(node --completion-bash)
+    # Call the real completion immediately
+    $(complete -p node | awk -F "-F" '{ print $2}' | awk -F " " '{print $1}') "$@"
+}
+
+
 which npm > /dev/null
 if [[ $? -eq 0 ]]
 then
@@ -41,4 +50,11 @@ if [[ $? -eq 0 ]]
 then
     echo init pandoc completion
     complete -F _lazyPandoc pandoc
+fi
+
+which node > /dev/null
+if [[ $? -eq 0 ]]
+then
+    echo init node completion
+    complete -F _lazyNode node
 fi

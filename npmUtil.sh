@@ -36,7 +36,8 @@ function specificNpmNameVersion() {
             fi
         fi
     fi
-    jq -r '"\(.name)@\(.version)"' $1/package.json
+    #jq -r '"\(.name)@\(.version)"' $1/package.json
+    jq -r '.name + (if (.version? // "") != "" then "@" + .version else "" end)' "$1/package.json"
 }
 
 
