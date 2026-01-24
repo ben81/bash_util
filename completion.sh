@@ -1,6 +1,6 @@
 #The MIT License (MIT)
 #
-#Copyright (c) 2024 completion.sh
+#Copyright (c) 2024-2026 completion.sh
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -29,6 +29,15 @@ function _lazyNpm() {
     $(complete -p npm | awk -F "-F" '{ print $2}' | awk -F " " '{print $1}') "$@"
 }
 
+
+function _lazyNode() {
+    # Load the real npm completion function
+    source <(node --completion-bash)
+    # Call the real completion immediately
+    $(complete -p node | awk -F "-F" '{ print $2}' | awk -F " " '{print $1}') "$@"
+}
+
+
 which npm > /dev/null
 if [[ $? -eq 0 ]]
 then
@@ -41,4 +50,11 @@ if [[ $? -eq 0 ]]
 then
     echo init pandoc completion
     complete -F _lazyPandoc pandoc
+fi
+
+which node > /dev/null
+if [[ $? -eq 0 ]]
+then
+    echo init node completion
+    complete -F _lazyNode node
 fi

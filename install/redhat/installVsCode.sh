@@ -1,6 +1,7 @@
+#!/bin/bash
 #The MIT License (MIT)
 #
-#Copyright (c) 2025-2026 source.sh
+#Copyright (c) 2026 installVsCode.sh
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -9,29 +10,9 @@
 #THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-if [[ "$0" == "$BASH_SOURCE" ]]; then
-    echo "Erreur : ce script doit être sourcé, pas exécuté." >&2
-    exit 1
-fi
 
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo
+dnf check-update
+sudo dnf install code # or code-insiders
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
-echo ${SCRIPT_DIR}
-
-source ${SCRIPT_DIR}/pathUtil.sh
-source ${SCRIPT_DIR}/gitUtil.sh
-source ${SCRIPT_DIR}/completion.sh
-source ${SCRIPT_DIR}/cdrom.sh
-source ${SCRIPT_DIR}/docker.sh
-source ${SCRIPT_DIR}/maven.sh
-source ${SCRIPT_DIR}/npmUtil.sh
-source ${SCRIPT_DIR}/prompt.sh
-source ${SCRIPT_DIR}/java.sh
-
-removePath ${SCRIPT_DIR}/git >/dev/null
-addPath ${SCRIPT_DIR}/git
-
-function resourceScript() {
-    source  ${SCRIPT_DIR}/source.sh
-}

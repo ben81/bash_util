@@ -1,6 +1,6 @@
 #The MIT License (MIT)
 #
-#Copyright (c) 2025 gitUtil.sh
+#Copyright (c) 2025-2026 gitUtil.sh
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -19,6 +19,16 @@ fi
 function insideGit() {
     git rev-parse 2> /dev/null
 }
+
+function insideGitWorkTree() {
+    git rev-parse --is-inside-work-tree | grep true > /dev/null
+}
+
+function insideGitDir() {
+    git rev-parse  --is-inside-git-dir | grep true > /dev/null
+}
+
+
 
 
 function gitRoot() {
@@ -204,16 +214,26 @@ function gitPrompt() {
     if [[ $? -eq 0 ]]
     then
         printf "[$(git branch --show-current)] "
-        if git rev-parse --verify HEAD >/dev/null 2>&1; then
-            commitIstagged
+        insideGitWorkTree
+        if [[ $? -eq 0 ]]
+        then
+            if git rev-parse --verify HEAD >/dev/null 2>&1; then
+                commitIstagged
+                if [[ $? -eq 0 ]]
+                then
+                    printf "<$(git tag --contains HEAD --column)> "
+                fi
+
+                printf "$(tracking_info)$(needCommit)$(ignoredFolder)\n"
+            else
+                printf "$(needCommit)$(ignoredFolder)\n"
+            fi
+        else
+            insideGitDir
             if [[ $? -eq 0 ]]
             then
-                printf "<$(git tag --contains HEAD --column)> "
+                printf "<gitdir>\n"
             fi
-
-            printf "$(tracking_info)$(needCommit)$(ignoredFolder)\n"
-        else
-            printf "$(needCommit)$(ignoredFolder)\n"
         fi
     fi
 
