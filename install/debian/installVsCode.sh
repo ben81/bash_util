@@ -20,7 +20,9 @@ Suites: stable
 Components: main
 Architectures: amd64,arm64,armhf
 Signed-By: /usr/share/keyrings/microsoft.gpg
-"> /etc/apt/sources.list.d/vscode.source
+"> /etc/apt/sources.list.d/vscode.sources
+
+
 
 sudo apt install apt-transport-https
 sudo apt update

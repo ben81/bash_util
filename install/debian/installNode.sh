@@ -11,6 +11,7 @@
 
 mkdir -p ~/node_install
 cd ~/node_install
+sudo apt-get install curl
 curl -fsSL  https://deb.nodesource.com/setup_current.x -o nodesource_setup.sh
 sudo -E bash nodesource_setup.sh
 sudo apt-get install -y nodejs
