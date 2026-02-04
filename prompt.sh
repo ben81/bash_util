@@ -46,7 +46,7 @@ function make_prompt() {
     echo "$var "
 }
 
-PROMPT_COMMAND='PS1=$(make_prompt)'
+PROMPT_COMMAND='_bash_history_sync;PS1=$(make_prompt)'
 
 PS1="$(make_prompt)"
 

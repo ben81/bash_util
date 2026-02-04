@@ -26,11 +26,14 @@ source ${SCRIPT_DIR}/cdrom.sh
 source ${SCRIPT_DIR}/docker.sh
 source ${SCRIPT_DIR}/maven.sh
 source ${SCRIPT_DIR}/npmUtil.sh
-source ${SCRIPT_DIR}/prompt.sh
+source ${SCRIPT_DIR}/history.sh
 source ${SCRIPT_DIR}/java.sh
 
 removePath ${SCRIPT_DIR}/git >/dev/null
 addPath ${SCRIPT_DIR}/git
+
+source ${SCRIPT_DIR}/prompt.sh
+
 
 function resourceScript() {
     source  ${SCRIPT_DIR}/source.sh
