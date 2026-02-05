@@ -14,4 +14,4 @@
 sudo apt-get install -y libxml2-utils
 sudo apt-get install -y jq
 sudo apt-get install -y maven
-sudo apt-get install -y moreutils        
+sudo apt-get install -y moreutils

@@ -22,21 +22,21 @@ HISTSIZE=9000
 HISTFILESIZE=$HISTSIZE
 HISTCONTROL=ignorespace:ignoredups
 
-_bash_history_sync() {
-    builtin history -a         
-    HISTFILESIZE=$HISTSIZE     
-    builtin history -c         
-    builtin history -r         
+function _bash_history_sync() {
+    builtin history -a
+    HISTFILESIZE=$HISTSIZE
+    builtin history -c
+    builtin history -r
 }
 
-history() {                  
+function history() {
     _bash_history_sync
     builtin history "$@"
 }
 
-removeDuplicateInHistory(){
-        #tac $HISTFILE | awk '!x[$0]++' | tac | sponge $HISTFILE
-        tac "$HISTFILE" | sed 's/[[:space:]]\+$//' | awk '!x[$0]++' | tac | sponge "$HISTFILE"        
+function removeDuplicateInHistory() {
+    #tac $HISTFILE | awk '!x[$0]++' | tac | sponge $HISTFILE
+    tac "$HISTFILE" | sed 's/[[:space:]]\+$//' | awk '!x[$0]++' | tac | sponge "$HISTFILE"
 }
 
 #export PROMPT_COMMAND=_bash_history_sync
