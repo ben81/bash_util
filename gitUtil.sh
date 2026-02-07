@@ -67,7 +67,7 @@ function repoGit() {
     then
         git rev-parse --absolute-git-dir
     else
-        find $PWD -name '.git'  2>/dev/null
+        find $PWD -name '.git' -type d  -prune 2>/dev/null
     fi
 }
 
@@ -130,46 +130,55 @@ function ignoredFolder() {
     fi
 }
 
+
+function __createAliasFolder(){
+	#echo $1
+	if [[  -f "$1/pom.xml" ]]
+	then 
+	   artifact=$(xmllint --shell "$1/pom.xml" <<< "setns ns=http://maven.apache.org/POM/4.0.0
+            cat /ns:project/ns:artifactId/text()" | grep -v "^/" )
+       if  [[ $? -eq 0 ]]
+            then
+                alias cd${artifact}="cd $1"
+                alias cd${artifact}
+                 return 0 
+            fi
+	fi	
+	if [[  -f "$1/package.json" ]]
+	then 
+	        jsonName=$( jq -r .name  "$1/package.json")
+            alias cd${jsonName}_js="cd $1"
+            alias cd${jsonName}_js
+             return 0 
+	fi
+		if [[  -f "$1/.project" ]]
+	then 
+	   prjName=$( echo "cat /projectDescription/name/text()" | xmllint --shell "$1/.project" | sed '/^\/ >/d')
+            #echo "project $prjName"
+            alias cd${prjName}="cd $1"
+            alias cd${prjName}
+          fi
+	
+}
+
+
+
+
 function initAliasCdGitRepo() {
     local OLD=$PWD
     for d  in $( repoGit )
     do
         folder=$(dirname $d)
         name=$(basename $folder)
-        alias cd${name}="cd $folder"
-        alias cd${name}
-        # create alias from pom.xml project
-        for pom in $(git --git-dir=$d ls-files -- '**/pom.xml' 'pom.xml')
-        do
-            #  echo ${folder}/${pom}
-            pomfolder=$(dirname  ${folder}/${pom})
-            artifact=$(xmllint --shell ${folder}/${pom} <<< "setns ns=http://maven.apache.org/POM/4.0.0
-            cat /ns:project/ns:artifactId/text()" | grep -v "^/" )
-            if  [[ $? -eq 0 ]]
-            then
-                alias cd${artifact}="cd $pomfolder"
-                alias cd${artifact}
-            fi
-        done
-        # create alias from package.json project
-        for json in $(git --git-dir=$d ls-files -- '**/package.json' 'package.json')
-        do
-            # echo ${folder}/${json}
-            jsonfolder=$(dirname  ${folder}/${json})
-            jsonName=$( jq -r .name ${folder}/${json})
-            alias cd${jsonName}="cd $jsonfolder"
-            alias cd${jsonName}
-        done
-        # echo eclipse .project
-        for prj in $(git --git-dir=$d ls-files -- '**/.project' '.project')
-        do
-            # echo ${folder}/${prj}
-            prjfolder=$(dirname  ${folder}/${prj})
-            prjName=$( echo "cat /projectDescription/name/text()" | xmllint --shell ${folder}/${prj} | sed '/^\/ >/d')
-            #echo "project $prjName"
-            alias cd${prjName}="cd $prjfolder"
-            alias cd${prjName}
-        done
+        alias cd${name}_git="cd $folder"
+        alias cd${name}_git
+        for pom in $(git --git-dir=$d  --work-tree=$d/..  ls-files -- '**/pom.xml' 'pom.xml' '**/package.json' 'package.json'  '**/.project' '.project' | sed "s/^/dirname /" | sh | sort | uniq )  ; 
+        do   
+     	   __createAliasFolder $(realpath $folder/$pom); 
+        done;  
+
+        
+     
     done
     echo "return to $OLD"
     cd "$OLD"
