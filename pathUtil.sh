@@ -20,7 +20,7 @@ fi
 # this function list a folder in PATH variable
 #
 function path() {
-    echo $PATH | tr ':' '\n' | grep -v "^$"
+    echo $PATH | tr ':' '\n' | grep -v "^$" | sed "s?/\$??"
 }
 
 #

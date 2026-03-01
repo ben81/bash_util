@@ -47,7 +47,7 @@ function mvnTransitionalDependencies() {
     then
         mkdir target -p
         mvn dependency:tree -DoutputFile=target/dep.txt -DoutputType=text 1>/dev/null
-        more target/dep.txt | grep  "^|"  | awk -F "\- " '{ print $2}' | awk -F ":" '{print  "<dependency><groupId>"$1"</groupId><artifactId>"$2"</artifactId><version>"$4"</version><scope>"$5"</scope></dependency>"}'
+        more target/dep.txt | grep  "^|"  | awk -F "- " '{ print $2}' | awk -F ":" '{print  "<dependency><groupId>"$1"</groupId><artifactId>"$2"</artifactId><version>"$4"</version><scope>"$5"</scope></dependency>"}'
     fi
 }
 
