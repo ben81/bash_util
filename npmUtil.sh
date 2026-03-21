@@ -94,5 +94,16 @@ function _format_json_completion() {
 complete -F _format_json_completion format_json
 
 
+function npmUpdateVersion(){
+	if [ -f "package.json" ]; then
+		if [ $# -ne 1 ]; then
+  			 echo "Erreur : Un argument est requis."
+    		 echo "Usage : $0 <argument>"
+    	else		
+	 		 jq ".version=\"$1\"" package.json | sponge package.json 
+			 npm ci
+	 	fi
+	fi
 
+}
 

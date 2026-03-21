@@ -130,3 +130,17 @@ function mvnFormat() {
     fi
 
 }
+
+
+function mvnUpdateVersion(){
+	if [ -f "pom.xml" ]; then
+		if [ $# -ne 1 ]; then
+  			 echo "Erreur : Un argument est requis."
+    		 echo "Usage : $0 <argument>"
+    	else		
+	 		xmlstarlet ed -L -N x="http://maven.apache.org/POM/4.0.0" -u "/x:project/x:version" -v "$1" pom.xml
+	 	fi
+	fi
+
+}
+
