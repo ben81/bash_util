@@ -131,34 +131,34 @@ function ignoredFolder() {
 }
 
 
-function __createAliasFolder(){
-	#echo $1
-	if [[  -f "$1/pom.xml" ]]
-	then 
-	   artifact=$(xmllint --shell "$1/pom.xml" <<< "setns ns=http://maven.apache.org/POM/4.0.0
-            cat /ns:project/ns:artifactId/text()" | grep -v "^/" )
-       if  [[ $? -eq 0 ]]
-            then
-                alias cd${artifact}="cd $1"
-                alias cd${artifact}
-                 return 0 
-            fi
-	fi	
-	if [[  -f "$1/package.json" ]]
-	then 
-	        jsonName=$( jq -r .name  "$1/package.json")
-            alias cd${jsonName}_js="cd $1"
-            alias cd${jsonName}_js
-             return 0 
-	fi
-		if [[  -f "$1/.project" ]]
-	then 
-	   prjName=$( echo "cat /projectDescription/name/text()" | xmllint --shell "$1/.project" | sed '/^\/ >/d')
-            #echo "project $prjName"
-            alias cd${prjName}="cd $1"
-            alias cd${prjName}
-          fi
-	
+function __createAliasFolder() {
+    #echo $1
+    if [[  -f "$1/pom.xml" ]]
+    then
+        artifact=$(xmllint --shell "$1/pom.xml" <<< "setns ns=http://maven.apache.org/POM/4.0.0
+        cat /ns:project/ns:artifactId/text()" | grep -v "^/" )
+        if  [[ $? -eq 0 ]]
+        then
+            alias cd${artifact}="cd $1"
+            alias cd${artifact}
+            return 0
+        fi
+    fi
+    if [[  -f "$1/package.json" ]]
+    then
+        jsonName=$( jq -r .name  "$1/package.json")
+        alias cd${jsonName}_js="cd $1"
+        alias cd${jsonName}_js
+        return 0
+    fi
+    if [[  -f "$1/.project" ]]
+    then
+        prjName=$( echo "cat /projectDescription/name/text()" | xmllint --shell "$1/.project" | sed '/^\/ >/d')
+        #echo "project $prjName"
+        alias cd${prjName}="cd $1"
+        alias cd${prjName}
+    fi
+
 }
 
 
@@ -172,13 +172,13 @@ function initAliasCdGitRepo() {
         name=$(basename $folder)
         alias cd${name}_git="cd $folder"
         alias cd${name}_git
-        for pom in $(git --git-dir=$d  --work-tree=$d/..  ls-files -- '**/pom.xml' 'pom.xml' '**/package.json' 'package.json'  '**/.project' '.project' | sed "s/^/dirname /" | sh | sort | uniq )  ; 
-        do   
-     	   __createAliasFolder $(realpath $folder/$pom); 
-        done;  
+        for pom in $(git --git-dir=$d  --work-tree=$d/..  ls-files -- '**/pom.xml' 'pom.xml' '**/package.json' 'package.json'  '**/.project' '.project' | sed "s/^/dirname /" | sh | sort | uniq )  ;
+        do
+            __createAliasFolder $(realpath $folder/$pom);
+        done;
 
-        
-     
+
+
     done
     echo "return to $OLD"
     cd "$OLD"
