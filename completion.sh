@@ -38,21 +38,21 @@ function _lazyNode() {
 }
 
 
-which npm > /dev/null
+which npm 2>&1 > /dev/null
 if [[ $? -eq 0 ]]
 then
     echo init npm completion
     complete -F _lazyNpm npm
 fi
 
-which pandoc > /dev/null
+which pandoc 2>&1 > /dev/null
 if [[ $? -eq 0 ]]
 then
     echo init pandoc completion
     complete -F _lazyPandoc pandoc
 fi
 
-which node > /dev/null
+which node 2>&1 > /dev/null
 if [[ $? -eq 0 ]]
 then
     echo init node completion
