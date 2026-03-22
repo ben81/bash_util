@@ -11,7 +11,7 @@
 
 function describe() {
 
-    for i in $(find $PWD -name ".git" )
+    for i in $(find $PWD -name ".git" | sort)
     do
         cd $i/..
         git branch | grep . > /dev/null 
