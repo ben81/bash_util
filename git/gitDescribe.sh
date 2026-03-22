@@ -14,7 +14,13 @@ function describe() {
     for i in $(find $PWD -name ".git" )
     do
         cd $i/..
-        printf "%-40s | %-30s| %-55s |%-40s\n" "$(basename $PWD)"  "$(git describe --always 2>/dev/null)" "$(git log -1 '--pretty=%ae | %an ')"  "$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')"
+        git branch | grep . > /dev/null 
+        if [[ $? -eq 0 ]]
+        then
+        	printf "%s | %s| %s |%s\n" "$(basename $PWD)"  "$(git describe --always --tags 2>/dev/null)" "$(git log -1 '--pretty=%ae | %an ')"  "$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')"
+        else
+        	printf "%s | %s| %s |%s\n" "$(basename $PWD)"  "<no commit>" ""  ""
+        fi
 
 done }
 
