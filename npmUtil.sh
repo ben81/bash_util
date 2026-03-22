@@ -101,7 +101,7 @@ function npmUpdateVersion() {
             echo "Usage : $0 <argument>"
         else
             jq ".version=\"$1\"" package.json | sponge package.json
-            npm ci
+            npm install
         fi
     fi
 
