@@ -36,7 +36,7 @@ function mvnCheckVersion() {
     mvn versions:display-dependency-updates
 }
 
-function mvnUpdateVersion() {
+function mvnUseLastVersion() {
     mvn versions:use-latest-versions
 }
 

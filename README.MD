@@ -261,12 +261,17 @@ Executes: `mvn versions:display-dependency-updates`.
 
 
 
+### mvnUseLastVersion
+
+**Syntax:** `mvnUseLastVersion`
+
+Executes: `mvn versions:use-latest-versions`.
+
 ### mvnUpdateVersion
 
 **Syntax:** `mvnUpdateVersion`
 
-Executes: `mvn versions:use-latest-versions`.
-
+Update version of pom.xml
 
 ### mvnTransitionalDependencies
 
