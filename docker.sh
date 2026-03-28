@@ -34,7 +34,8 @@ function dockerPs() {
 }
 
 function dockerImage() {
-    docker images --format "table {{.ID}}|{{.Repository}}|{{.Tag}}|{{.Digest}}|{{.CreatedSince}}|{{.CreatedAt}}|{{.Size}}|{{.Containers}}|{{.SharedSize}}|{{.UniqueSize}}|{{.VirtualSize}}" | column -t -s '|' -o '|'
+	#|{{.VirtualSize}}
+    docker images --format "table {{.ID}}|{{.Repository}}|{{.Tag}}|{{.Digest}}|{{.CreatedSince}}|{{.CreatedAt}}|{{.Size}}|{{.Containers}}|{{.SharedSize}}|{{.UniqueSize}}" | column -t -s '|' -o '|'
 }
 
 function dockerImageJs() {
