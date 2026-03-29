@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Récupérer les commits avant/après le merge
+PRE_MERGE_COMMIT=$(git rev-parse ORIG_HEAD)
+POST_MERGE_COMMIT=$(git rev-parse HEAD)
+
+# Afficher les informations
+echo "----------------------------------------"
+echo "Post-merge hook triggered:"
+echo "Commit avant le merge: $PRE_MERGE_COMMIT"
+echo "Commit après le merge: $POST_MERGE_COMMIT"
+echo "----------------------------------------"
+
+# Liste des fichiers à surveiller
+FILES_TO_CHECK="package.json package-lock.json pom.xml"
+
+# Fonction pour vérifier les modifications entre ORIG_HEAD et HEAD
+check_files() {
+    for file in $FILES_TO_CHECK; do
+        if git diff --name-only "$PRE_MERGE_COMMIT" "$POST_MERGE_COMMIT" | grep -q "$file"; then
+            echo  "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié lors du merge. \033[0m"
+        fi
+    done
+}
+
+# Exécuter la vérification
+check_files

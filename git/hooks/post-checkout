@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Récupérer les arguments passés par Git
+PREVIOUS_COMMIT="$1"
+NEW_COMMIT="$2"
+BRANCH_CHECKOUT="$3"
+
+# Afficher les informations
+echo "----------------------------------------"
+echo "Post-checkout hook triggered:"
+echo "Previous commit: $PREVIOUS_COMMIT"
+echo "New commit:      $NEW_COMMIT"
+echo "Branch checkout: $BRANCH_CHECKOUT"
+echo "----------------------------------------"
+
+# Liste des fichiers à surveiller
+FILES_TO_CHECK="package.json package-lock.json pom.xml"
+
+# Fonction pour vérifier les modifications
+check_files() {
+    for file in $FILES_TO_CHECK; do
+        if [ "$BRANCH_CHECKOUT" = "1" ] && [ -n "$PREVIOUS_COMMIT" ]; then
+            if git diff --name-only "$PREVIOUS_COMMIT" "$NEW_COMMIT" | grep -q "$file"; then
+                echo  "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié entre $PREVIOUS_COMMIT et $NEW_COMMIT. \033[0m"
+            fi
+        fi
+    done
+}
+
+# Exécuter la vérification
+check_files
