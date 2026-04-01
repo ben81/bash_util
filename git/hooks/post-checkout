@@ -1,4 +1,15 @@
-#!/bin/sh
+#!/bin/bash
+#The MIT License (MIT)
+#
+#Copyright (c) 2026 post-checkout
+#
+#Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
 
 # Récupérer les arguments passés par Git
 PREVIOUS_COMMIT="$1"
@@ -17,14 +28,14 @@ echo "----------------------------------------"
 FILES_TO_CHECK="package.json package-lock.json pom.xml"
 
 # Fonction pour vérifier les modifications
-check_files() {
-    for file in $FILES_TO_CHECK; do
-        if [ "$BRANCH_CHECKOUT" = "1" ] && [ -n "$PREVIOUS_COMMIT" ]; then
-            if git diff --name-only "$PREVIOUS_COMMIT" "$NEW_COMMIT" | grep -q "$file"; then
-                echo  "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié entre $PREVIOUS_COMMIT et $NEW_COMMIT. \033[0m"
-            fi
-        fi
-    done
+function check_files() {
+  for file in $FILES_TO_CHECK; do
+    if [ "$BRANCH_CHECKOUT" = "1" ] && [ -n "$PREVIOUS_COMMIT" ]; then
+      if git diff --name-only "$PREVIOUS_COMMIT" "$NEW_COMMIT" | grep -q "$file"; then
+        echo  "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié entre $PREVIOUS_COMMIT et $NEW_COMMIT. \033[0m"
+      fi
+    fi
+  done
 }
 
 # Exécuter la vérification

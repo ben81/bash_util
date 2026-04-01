@@ -34,7 +34,7 @@ function dockerPs() {
 }
 
 function dockerImage() {
-	#|{{.VirtualSize}}
+    #|{{.VirtualSize}}
     docker images --format "table {{.ID}}|{{.Repository}}|{{.Tag}}|{{.Digest}}|{{.CreatedSince}}|{{.CreatedAt}}|{{.Size}}|{{.Containers}}|{{.SharedSize}}|{{.UniqueSize}}" | column -t -s '|' -o '|'
 }
 

@@ -1,4 +1,16 @@
-#!/bin/sh
+#!/bin/bash
+#The MIT License (MIT)
+#
+#Copyright (c) 2026 post-merge
+#
+#Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
 
 # Récupérer les commits avant/après le merge
 PRE_MERGE_COMMIT=$(git rev-parse ORIG_HEAD)
@@ -15,12 +27,12 @@ echo "----------------------------------------"
 FILES_TO_CHECK="package.json package-lock.json pom.xml"
 
 # Fonction pour vérifier les modifications entre ORIG_HEAD et HEAD
-check_files() {
-    for file in $FILES_TO_CHECK; do
-        if git diff --name-only "$PRE_MERGE_COMMIT" "$POST_MERGE_COMMIT" | grep -q "$file"; then
-            echo  "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié lors du merge. \033[0m"
-        fi
-    done
+function check_files() {
+  for file in $FILES_TO_CHECK; do
+    if git diff --name-only "$PRE_MERGE_COMMIT" "$POST_MERGE_COMMIT" | grep -q "$file"; then
+      echo  "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié lors du merge. \033[0m"
+    fi
+  done
 }
 
 # Exécuter la vérification
