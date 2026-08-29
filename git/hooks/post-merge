@@ -30,7 +30,7 @@ FILES_TO_CHECK="package.json package-lock.json pom.xml"
 function check_files() {
   for file in $FILES_TO_CHECK; do
     if git diff --name-only "$PRE_MERGE_COMMIT" "$POST_MERGE_COMMIT" | grep -q "$file"; then
-      echo  "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié lors du merge. \033[0m"
+      echo  -e "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié lors du merge. \033[0m"
     fi
   done
 }
