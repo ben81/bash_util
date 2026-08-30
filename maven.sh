@@ -144,3 +144,15 @@ function mvnUpdateVersion() {
 
 }
 
+function mvnDependencies() {
+    if [ -f "pom.xml" ]; then
+        mvn dependency:list \
+            -DincludeScope=compile \
+            -DexcludeTransitive=false \
+            -DoutputAbsoluteArtifactFilename=false \
+            -q 2>/dev/null |
+        grep -E '^[[:space:]]+[a-zA-Z0-9_.-]+:[a-zA-Z0-9_.-]+:' |
+        sed 's/^[[:space:]]*//' |
+        sort -u
+    fi
+}

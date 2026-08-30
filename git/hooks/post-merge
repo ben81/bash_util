@@ -9,7 +9,9 @@
 #
 #THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+set -euo pipefail
 
+HOOKS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" 
 
 
 # Récupérer les commits avant/après le merge
@@ -23,17 +25,7 @@ echo "Commit avant le merge: $PRE_MERGE_COMMIT"
 echo "Commit après le merge: $POST_MERGE_COMMIT"
 echo "----------------------------------------"
 
-# Liste des fichiers à surveiller
-FILES_TO_CHECK="package.json package-lock.json pom.xml"
 
-# Fonction pour vérifier les modifications entre ORIG_HEAD et HEAD
-function check_files() {
-  for file in $FILES_TO_CHECK; do
-    if git diff --name-only "$PRE_MERGE_COMMIT" "$POST_MERGE_COMMIT" | grep -q "$file"; then
-      echo  -e "\033[33m⚠️ Le fichier \033[31m$file\033[33m a été modifié lors du merge. \033[0m"
-    fi
-  done
-}
+source "$HOOKS_DIR/lib/checks.sh"
 
-# Exécuter la vérification
-check_files
+run_checks "$PREVIOUS_COMMIT" "$NEW_COMMIT"
