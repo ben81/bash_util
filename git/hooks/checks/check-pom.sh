@@ -13,8 +13,17 @@ NEW_COMMIT="${2:-}"
 POM_FILE="pom.xml"
 
 
+for f in $(files_add ${PREVIOUS_COMMIT} ${NEW_COMMIT} ${POM_FILE})
+do
+	  messageAdd
+done
+
+for f in $(files_remove ${PREVIOUS_COMMIT} ${NEW_COMMIT} ${POM_FILE})
+do
+	  messageRemove
+done
 
 for f in $(files_changed ${PREVIOUS_COMMIT} ${NEW_COMMIT} ${POM_FILE})
 do
-	  message
+	  messageChange
 done

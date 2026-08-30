@@ -62,9 +62,41 @@ files_changed() {
     local previous_commit="$1"
     local new_commit="$2"
     local file="$3"
-    git diff --name-only "${previous_commit}" "${new_commit}" | grep  "${file}"; 
+    git diff --name-only --diff-filter=M "${previous_commit}" "${new_commit}" | grep  "${file}"; 
 }
 
-message(){
+files_add() {
+    local previous_commit="$1"
+    local new_commit="$2"
+    local file="$3"
+    git diff --name-only --diff-filter=A "${previous_commit}" "${new_commit}" | grep  "${file}"; 
+}
+
+
+files_remove() {
+    local previous_commit="$1"
+    local new_commit="$2"
+    local file="$3"
+    git diff --name-only --diff-filter=D "${previous_commit}" "${new_commit}" | grep  "${file}"; 
+}
+
+
+
+messageChange(){
 	echo -e "${RED}⚠️ Le fichier ${RESET}${f}${RED} a été modifié entre $PREVIOUS_COMMIT et $NEW_COMMIT. ${RESET}"
 }
+
+messageAdd(){
+	echo -e "${RED}⚠️ Le fichier ${RESET}${f}${RED} a été ajouté entre $PREVIOUS_COMMIT et $NEW_COMMIT. ${RESET}"
+}
+
+messageRemove(){
+	echo -e "${RED}⚠️ Le fichier ${RESET}${f}${RED} a été supprimé entre $PREVIOUS_COMMIT et $NEW_COMMIT. ${RESET}"
+}
+
+findSha1(){
+	local commit="$1"
+    local file="$2"
+	git ls-tree -r $commit -- "$file"| grep '^'
+}
+
