@@ -28,4 +28,4 @@ echo "----------------------------------------"
 
 source "$HOOKS_DIR/lib/checks.sh"
 
-run_checks "$PREVIOUS_COMMIT" "$NEW_COMMIT"
+run_checks "${PRE_MERGE_COMMIT}" "${POST_MERGE_COMMIT}"
