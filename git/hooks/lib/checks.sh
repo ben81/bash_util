@@ -19,12 +19,12 @@ HOOKS_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 source "$HOOKS_DIR/lib/common.sh"
 
 
-run_checks() {
+function run_checks() {
     local previous_commit="$1"
     local new_commit="$2"
 
     local check
-	echo "run checker"
+    echo "run checker"
     for check in "$HOOKS_DIR"/checks/*.sh; do
 
         [[ -f "$check" ]] || continue

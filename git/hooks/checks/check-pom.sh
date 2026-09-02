@@ -26,15 +26,15 @@ POM_FILE="pom.xml"
 
 for f in $(files_add ${PREVIOUS_COMMIT} ${NEW_COMMIT} ${POM_FILE})
 do
-	  messageAdd
+    messageAdd
 done
 
 for f in $(files_remove ${PREVIOUS_COMMIT} ${NEW_COMMIT} ${POM_FILE})
 do
-	  messageRemove
+    messageRemove
 done
 
 for f in $(files_changed ${PREVIOUS_COMMIT} ${NEW_COMMIT} ${POM_FILE})
 do
-	  messageChange
+    messageChange
 done

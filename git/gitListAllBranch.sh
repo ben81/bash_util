@@ -10,10 +10,10 @@
 
 
 for d in $(find $PWD -type d -name ".git" )
-do 
-	cd $( dirname "$d")
-	echo "================================ $PWD"
-	git --no-pager branch -avv --no-abbre 
-	echo
+do
+    cd $( dirname "$d")
+    echo "================================ $PWD"
+    git --no-pager branch -avv --no-abbre
+    echo
 done
 
