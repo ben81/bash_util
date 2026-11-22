@@ -28,6 +28,7 @@ source ${SCRIPT_DIR}/maven.sh
 source ${SCRIPT_DIR}/npmUtil.sh
 source ${SCRIPT_DIR}/history.sh
 source ${SCRIPT_DIR}/java.sh
+source ${SCRIPT_DIR}/gradle.sh
 
 removePath ${SCRIPT_DIR}/git >/dev/null
 addPath ${SCRIPT_DIR}/git
